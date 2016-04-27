@@ -1,10 +1,35 @@
-const data = require('./mock-data')
-const LATENCY = 16
+import Wilddog from "wilddog";
+
+const AppId = 'wild-dragon-56206'
+
+let site = new Wilddog('https://' + AppId + '.wilddogio.com/')
+let chat = site.child('chat')
+let userlist = chat.child("data").child("users")
+
+//let ref = new Wilddog("https://wild-dragon-56206.wilddogio.com/chat");
+//let usersRef = new Wilddog("https://wild-dragon-56206.wilddogio.com/chat/users");
 
 export function getAllMessages (cb) {
-  setTimeout(() => {
-    cb(data)
-  }, LATENCY)
+  // 监听数据
+  /*chat.on("value", function(snapshot) {
+      let _json = snapshot.val()
+      if(_json&&_json.code==0){
+        cb(_json.data.users)
+      }
+
+  }, function (errorObject) {
+
+    console.log("The read failed: " + errorObject.code);
+
+  });*/
+
+  chat.on('child_added', (obj) => {
+    let _json = obj.val()
+    if(_json&&_json.code==0){
+      cb(_json.data.users)
+    }
+  })
+
 }
 
 export function createMessage ({ text, thread }, cb) {
@@ -14,11 +39,11 @@ export function createMessage ({ text, thread }, cb) {
     id,
     text,
     timestamp,
-    threadID: thread.id,
-    threadName: thread.name,
+    threadID: '1',
+    threadName: 'andy',
     authorName: 'Evan'
-  }
-  setTimeout(function () {
-    cb(message)
-  }, LATENCY)
+  };
+  userlist.push(message);
+  cb(message)
+
 }

@@ -9,8 +9,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "babel-runtime": "^5.8.0",
     "vue": "^1.0.18",
-    "babel-runtime": "^5.8.0"
+    "wilddog": "^0.6.3"
   },
   "devDependencies": {
     "babel-core": "^6.2.1",
@@ -21,8 +22,6 @@
     "babel-preset-es2015-rollup": "^1.1.1",
     "babel-preset-stage-2": "^6.1.18",
     "babel-runtime": "^5.8.0",
-
-
     "connect-history-api-fallback": "^1.1.0",
     "css-loader": "^0.23.0",
     "eventsource-polyfill": "^0.9.6",
@@ -36,17 +35,13 @@
     "ora": "^0.2.0",
     "shelljs": "^0.6.0",
     "url-loader": "^0.5.7",
-
     "mockjs": "^1.0.0",
     "react-cookie": "^0.4.5",
-
-
-    "vue-waterfall":"^0.2.1",
-    "vue-materialize":"^0.1.11",
-    "vue-swipe":"^0.2.0",
+    "vue-waterfall": "^0.2.1",
+    "vue-materialize": "^0.1.11",
+    "vue-swipe": "^0.2.0",
     "vue-lazyload": "^0.4.0",
     "vue-resource": "^0.7.0",
-
     "vuex": ">=0.6.2",
     "vue-router": ">=0.7.13",
     "vue-hot-reload-api": "^1.2.0",
