@@ -23,7 +23,9 @@ export const switchThread = ({ dispatch }, id) => {
 
 //添加聊天用户
 export const addUser = ({ dispatch },authorName,thread) =>{
-  api.createUser(messages => {
-    dispatch(types.RECEIVE_USER, messages)
+
+  api.createUser({ authorName, thread }, user => {
+    dispatch(types.RECEIVE_USER, user)
   })
+
 }

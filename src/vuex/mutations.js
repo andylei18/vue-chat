@@ -15,10 +15,11 @@ export default {
       if (!latestMessage || message.timestamp > latestMessage.timestamp) {
         latestMessage = message
       }
+
       addMessage(state, message)
 
     }
-    
+
     setCurrentThread(state, latestMessage.threadID)
   },
 
@@ -28,7 +29,11 @@ export default {
 
   [types.SWITCH_THREAD] (state, id) {
     setCurrentThread(state, id)
-  }
+  },
+
+  [types.RECEIVE_USER] (state, user) {
+    addUser(state, user)
+  },
 }
 
 function createThread (state, id, name) {
@@ -57,4 +62,19 @@ function setCurrentThread (state, id) {
   state.currentThreadID = id
   // mark thread as read
   state.threads[id].lastMessage.isRead = true
+}
+
+
+function addUser (state, user) {
+
+  user.isRead = user.threadID === state.currentThreadID
+
+  const thread = state.threads[user.threadID]
+
+  if (!thread.messages.some(id => id === user.id)) {
+    thread.messages.push(user.id)
+    thread.lastMessage = user
+  }
+
+  set(state.messages, user.id, user)
 }

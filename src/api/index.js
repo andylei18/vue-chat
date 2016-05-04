@@ -17,6 +17,7 @@ export function getAllMessages (cb) {
     let newPost = snapshot.val()
     cb(newPost.users)
   })
+
 }
 
 export function createMessage ({ text, thread }, cb) {
@@ -30,11 +31,26 @@ export function createMessage ({ text, thread }, cb) {
     threadName: thread.name,
     authorName: '丁磊'
   };
+
   userlist.push(message);
+
   cb(message)
 
 }
 
-export function createUser(){
+export function createUser({ authorName }, cb){
+  const timestamp = Date.now()
+  const id = 'm_' + timestamp
+  const threadID = 't_' + timestamp
+  const message = {
+    id,
+    text:"",
+    timestamp,
+    threadID,
+    threadName: "",
+    authorName: authorName
+  };
 
+  userlist.push(message)
+  cb(message)
 }
