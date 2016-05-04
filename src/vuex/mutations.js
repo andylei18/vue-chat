@@ -4,19 +4,21 @@ import * as types from './mutation-types'
 export default {
   [types.RECEIVE_ALL] (state, messages) {
     let latestMessage
-    messages.forEach(message => {
-      // create new thread if the thread doesn't exist
+
+    for(let i in messages){
+      const message = messages[i]
+
       if (!state.threads[message.threadID]) {
         createThread(state, message.threadID, message.threadName)
       }
-      // mark the latest message
+
       if (!latestMessage || message.timestamp > latestMessage.timestamp) {
         latestMessage = message
       }
-      // add message
       addMessage(state, message)
-    })
-    // set initial thread to the one with the latest message
+
+    }
+    
     setCurrentThread(state, latestMessage.threadID)
   },
 

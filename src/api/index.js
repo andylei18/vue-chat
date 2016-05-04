@@ -1,35 +1,22 @@
 import Wilddog from "wilddog";
 
+const data = require('./mock-data')
 const AppId = 'wild-dragon-56206'
+const localStorage = window.localStorage
 
-let site = new Wilddog('https://' + AppId + '.wilddogio.com/')
-let chat = site.child('chat')
+//let currentSite = document.domain.replace(/\./g, '-')
+let site = new Wilddog('https://' + AppId + '.wilddogio.com/' )
+
+let chat = site.child("chat")
+
 let userlist = chat.child("data").child("users")
-
-//let ref = new Wilddog("https://wild-dragon-56206.wilddogio.com/chat");
-//let usersRef = new Wilddog("https://wild-dragon-56206.wilddogio.com/chat/users");
 
 export function getAllMessages (cb) {
   // 监听数据
-  /*chat.on("value", function(snapshot) {
-      let _json = snapshot.val()
-      if(_json&&_json.code==0){
-        cb(_json.data.users)
-      }
-
-  }, function (errorObject) {
-
-    console.log("The read failed: " + errorObject.code);
-
-  });*/
-
-  chat.on('child_added', (obj) => {
-    let _json = obj.val()
-    if(_json&&_json.code==0){
-      cb(_json.data.users)
-    }
+  chat.on('child_added', (snapshot) => {
+    let newPost = snapshot.val()
+    cb(newPost.users)
   })
-
 }
 
 export function createMessage ({ text, thread }, cb) {
@@ -39,11 +26,15 @@ export function createMessage ({ text, thread }, cb) {
     id,
     text,
     timestamp,
-    threadID: '1',
-    threadName: 'andy',
-    authorName: 'Evan'
+    threadID: thread.id,
+    threadName: thread.name,
+    authorName: '丁磊'
   };
   userlist.push(message);
   cb(message)
+
+}
+
+export function createUser(){
 
 }

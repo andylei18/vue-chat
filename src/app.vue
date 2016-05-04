@@ -86,6 +86,15 @@
         padding: 10px;
     }
 
+
+    .login-section{
+      float: left;
+      width: 32.5%;
+      border: 1px solid #ccc;
+      margin-top: 20px;
+      font-size: 14px;
+      height: 5em;
+    }
 </style>
 
 <template>
@@ -96,6 +105,8 @@
 
         <message-section></message-section>
 
+        <login-section></login-section>
+
     </div>
 
 </template>
@@ -103,11 +114,13 @@
 <script>
     import ThreadSection from './components/ThreadSection.vue'
     import MessageSection from './components/MessageSection.vue'
+    import LoginSection from './components/LoginSection.vue'
 
     export default {
         components: {
             ThreadSection,
-            MessageSection
+            MessageSection,
+            LoginSection
         }
     }
 </script>

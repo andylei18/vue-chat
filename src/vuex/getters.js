@@ -10,3 +10,10 @@ export function currentMessages (state) {
     ? thread.messages.map(id => state.messages[id])
     : []
 }
+
+export function currentUsername (state) {
+  return state.currentThreadID
+    ? state.threads[state.currentThreadID]
+    : {}
+
+}
