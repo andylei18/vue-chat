@@ -1,126 +1,72 @@
+<style src="./assets/styles/base.css"></style>
 <style>
-    .chatapp {
-        font-family: 'Muli', 'Helvetica Neue', helvetica, arial;
-        max-width: 760px;
-        margin: 20px auto;
-        overflow: hidden;
-    }
+  [v-cloak]{
+    display: none;
+  }
+  .v-cloak--block,.v-cloak--inline,.v-cloak--inlineBlock{
+    display: none;
+  }
+  .ui-view {
+    min-width: 320px;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
 
-    .message-list, .thread-list {
-        border: 1px solid #ccf;
-        font-size: 16px;
-        height: 400px;
-        margin: 0;
-        overflow-y: auto;
-        padding: 0;
-    }
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+  }
 
-    .message-section {
-        float: right;
-        width: 65%;
-    }
+  .fade-enter{
+    opacity: 1;
+    transform: translate3d(100%, 0, 0);
+  }
+  .fade-leave {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 
-    .thread-section {
-        float: left;
-        width: 32.5%;
-    }
+  }
 
-    .message-thread-heading,
-    .thread-count {
-        height: 40px;
-        margin: 0;
-    }
+  .back-enter {
+    opacity: 1;
+    -webkit-transform: translate3d(-110%, 0, 0);
+    transform: translate3d(-110%, 0, 0);
 
-    .message-list-item, .thread-list-item {
-        list-style: none;
-        padding: 12px 14px 14px;
-    }
-
-    .thread-list-item {
-        border-bottom: 1px solid #ccc;
-        cursor: pointer;
-    }
-
-    .thread-list:hover .thread-list-item:hover {
-        background-color: #f8f8ff;
-    }
-
-    .thread-list:hover .thread-list-item {
-        background-color: #fff;
-    }
-
-    .thread-list-item.active,
-    .thread-list:hover .thread-list-item.active,
-    .thread-list:hover .thread-list-item.active:hover {
-        background-color: #efefff;
-        cursor: default;
-    }
-
-    .message-author-name,
-    .thread-name {
-        color: #66c;
-        float: left;
-        font-size: 13px;
-        margin: 0;
-    }
-
-    .message-time, .thread-time {
-        color: #aad;
-        float: right;
-        font-size: 12px;
-    }
-
-    .message-text, .thread-last-message {
-        clear: both;
-        font-size: 14px;
-        padding-top: 10px;
-    }
-
-    .message-composer {
-        box-sizing: border-box;
-        font-family: inherit;
-        font-size: 14px;
-        height: 5em;
-        width: 100%;
-        margin: 20px 0 0;
-        padding: 10px;
-    }
-
-
-    .login-section{
-      float: left;
-      width: 32.5%;
-      border: 1px solid #ccc;
-      margin-top: 20px;
-      font-size: 14px;
-      height: 5em;
-    }
+  }
+  .back-leave{
+    opacity: 0;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 </style>
-
 <template>
 
-    <div class="chatapp">
+  <div class="web-app">
 
-        <thread-section></thread-section>
+    <!-- 页面加载loading -->
+    <loading :show="loading"></loading>
 
-        <message-section></message-section>
+    <!-- 缓存一级路由切换的页面 -->
+    <router-view class="ui-view" keep-alive :transition="effect" transition-mode="out-in"></router-view>
 
-        <login-section></login-section>
-
-    </div>
+  </div>
 
 </template>
 
 <script>
-    import ThreadSection from './components/ThreadSection.vue'
-    import MessageSection from './components/MessageSection.vue'
-    import LoginSection from './components/LoginSection.vue'
+  //加载公用小组件
+  import Loading from './components/loading.vue'
 
-    export default {
-        components: {
-            ThreadSection,
-            MessageSection,
-            LoginSection
+  export default {
+      data () {
+        return {
+          loading           : true,  //loading
+          effect            : 'fade', //路由模板动画参数
+          routeList         : [],     //访问周期中所访问了那些路径,在route.js中设置
         }
-    }
+      },
+      components:{
+        Loading
+      }
+  }
 </script>
