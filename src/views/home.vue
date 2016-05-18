@@ -1,3 +1,39 @@
+<style>
+	.main {
+	    height: 80%;
+	    min-height: 600px;
+	    padding-top: 100px;
+	    display: none;
+	    -webkit-transition: padding .3s linear;
+	    -ms-backface-visibility: hidden;
+	    -moz-backface-visibility: hidden;
+	    -webkit-backface-visibility: hidden;
+	    backface-visibility: hidden;
+	}
+	@media (max-width: 1000px),(max-height:800px) {
+	    .main {
+	        padding-top:0;
+	        height: 100%
+	    }
+
+	    .main .copyright {
+	        display: none
+	    }
+	}
+	.web-app .main {
+	    display: block;
+	}
+	.main_inner {
+	    max-width: 1000px;
+	    min-width: 800px;
+	    height: 100%;
+	    margin: 0 auto;
+	    border-radius: 3px;
+	    -moz-border-radius: 3px;
+	    -webkit-border-radius: 3px;
+	    overflow: hidden;
+	}
+</style>
 <template>
 
 	<div class="main">
@@ -26,8 +62,8 @@
 	const AppId = 'vuechat'//野狗数据库ID
 
 	//局部业务组件
-	import PanelModule from './panel.vue'	//panel组件
-	import ContentModule from './content.vue'	//content组件
+	import PanelModule from './panel/index.vue'	//panel组件
+	import ContentModule from './content/index.vue'	//content组件
 
 	export default {
 		components: {

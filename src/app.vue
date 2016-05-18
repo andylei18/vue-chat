@@ -47,7 +47,7 @@
     <loading :show="loading"></loading>
 
     <!-- 缓存一级路由切换的页面 -->
-    <router-view class="ui-view" keep-alive :transition="effect" transition-mode="out-in"></router-view>
+    <router-view keep-alive :transition="effect" transition-mode="out-in"></router-view>
 
   </div>
 
@@ -61,7 +61,7 @@
       data () {
         return {
           loading           : true,  //loading
-          effect            : 'fade', //路由模板动画参数
+          effect            : '', //路由模板动画参数
           routeList         : [],     //访问周期中所访问了那些路径,在route.js中设置
         }
       },
