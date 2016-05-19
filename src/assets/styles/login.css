@@ -1,0 +1,92 @@
+.login {
+    display: none;
+    height: 100%;
+    min-width: 860px;
+    min-height: 700px;
+    overflow: auto;
+    position: relative;
+}
+.unlogin .login {
+    display: block;
+}
+.logo {
+    position: absolute;
+    top: 60px;
+    left: 60px;
+}
+.web_wechat_login_logo {
+    background: url(../../assets/images/panel/head/sprite.png) 0 -1107px;
+    width: 36px;
+    height: 28px;
+    vertical-align: middle;
+    display: inline-block;
+}
+.login_box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -190px;
+    margin-top: -270px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    background-color: #fff;
+    width: 380px;
+    height: 540px;
+    box-shadow: #999 0 2px 10px;
+    -moz-box-shadow: #999 0 2px 10px;
+    -webkit-box-shadow: #999 0 2px 10px;
+}
+.form_wrap {
+    padding: 48px 60px 48px;
+}
+.mb15 {
+    margin-bottom: 60px;
+}
+.form_mod {
+    margin-bottom: 40px;
+    font-size: 14px;
+    line-height: 64px;
+    background: #f2f2f2;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+.userselect {
+    -webkit-user-select: text;
+}
+input[type=checkbox], input[type=email], input[type=number], input[type=password], input[type=radio], input[type=search], input[type=tel], input[type=text] {
+    vertical-align: middle;
+    outline: 0;
+    color: #424242;
+    -webkit-appearance: none;
+    -webkit-user-select: text;
+}
+.form_mod .text {
+    height: 88px;
+    line-height: 88px;
+    width: 100%;
+    -webkit-box-flex: 1;
+    display: block;
+    font-size: 24px;
+    border: none;
+    color: #444;
+    background: #f2f2f2;
+}
+.login_btn,.regist_btn {
+    width: 100%;
+    font-size: 22px;
+    height: 80px;
+    line-height: 80px;
+    margin-bottom: 40px
+}
+.login_show .login_btn {
+    display: inline-block;
+    background: #ff5777;
+    color: #fff;
+    border: 0;
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+}

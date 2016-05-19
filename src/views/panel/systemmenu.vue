@@ -55,7 +55,7 @@
 </style>
 <template>
 	
-	<div class="mmpop ng-scope system_menu" id="mmpop_system_menu" v-show="menu.show">
+	<div class="mmpop ng-scope system_menu" id="mmpop_system_menu" v-show="menu.show" style="left:85px;top:60px">
 		<ul class="dropdown_menu">
 		    <li>
 		        <a tabindex="-1" href="javascript:;" ng-click="createChatroom()" title="发起聊天">

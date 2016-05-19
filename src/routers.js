@@ -16,6 +16,17 @@ module.exports = function(router){
             }
         },
 
+
+        //登陆
+        '/login':{
+            name:'login',
+            //异步处理大量数据
+            component: function(reslove){
+                return require(['./views/login.vue'],reslove)
+            }
+        },
+        
+
         // 404 页
         '*': {
             name:'404error',

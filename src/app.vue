@@ -41,7 +41,7 @@
 </style>
 <template>
 
-  <div class="web-app">
+  <div class="web-app unlogin">
 
     <!-- 页面加载loading -->
     <loading :show="loading"></loading>
