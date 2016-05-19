@@ -13,38 +13,47 @@
             
             <div class="form_wrap"> 
 	            <div class="form_mod_wrap mb15">
-	            	<div class="form_mod"> <div> 
-	            	<input type="text" class="js-uname userselect text" placeholder="昵称/邮箱/手机号"> </div> 
-	            </div>
-	            <div class="form_mod"> <div> 
-	            	<input type="password" class="js-pwd userselect text" placeholder="密码"> </div> 
+	            	<div class="form_mod"> 
+	            		<div> 
+	            			<input type="text" class="js-uname userselect text" placeholder="昵称/邮箱/手机号" v-model="uname"> 
+	            		</div> 
+	        	</div>
+	            <div class="form_mod"> 
+	            	<div> 
+	            		<input type="text" class="js-pwd userselect text" placeholder="密码" v-model="upwd"> 
+	            	</div> 
 	            </div> 
             </div> 
             <div class="js-captcha-container"></div> 
 	            <div class="login_show"> 
-	            	<span class="login_btn">登录</span> 
+	            	<span class="login_btn" @click="loginEvent">登录</span> 
 	            </div>
 	            <div class="login_show"> 
-	            	<span class="login_btn">注册</span> 
+	            	<span class="regist_btn" @click="registEvent">注册</span> 
 	            </div>  
             </div>
 
         </div>
         <!--END login_box-->
+
+        <canvas id="canvasFont" class="login_cancas"></canvas>
+
     </div>
 </template>
 
 <script>
-    
-    //局部业务组件
-    
+    const AppId = 'wxuser0'
+    const myWillog = new Wilddog('https://' + AppId + '.wilddogio.com/')
+
     export default {
         components: {
              
         },
         data () {
             return {
-                
+                uname:"",
+                upwd:"",
+                isRegist:false
             }
         },
         route: {
@@ -52,11 +61,7 @@
 	          const self = this
 	          //请求列表全部数据
 	          self.$route.router.app.loading = false
-	          //滚动加载
-	          //self.scrollList();
-	          /*self.$wilddogRefs.anArray.push({
-				  text: 'hello'
-			  })*/
+			  
 	        },
 	        deactivate (transition) {
 	          //$(window).off('scroll');
@@ -64,8 +69,69 @@
 	        }
 	    },
 	    wilddog: {
+			userlist: {
+			      source:myWillog,
+			      // 可选，作为对象绑定
+			      asObject: false,
+			      // 可选，提供一个回调
+			      cancelCallback: function () {}
+			}
+	    },
+	    methods:{
+        	//登陆
+        	loginEvent () {
+        		const name = this.uname
+        		const pwd = this.upwd
+        		if (name.trim()!=''&&pwd.trim()!='') {
+			        this.userlist.forEach(item => {
+		                if(item.name == name&&item.pwd == pwd){
+		                	
+				        	console.log(this)
+		                }
+		            })
+			    }else{
+		            this.Toast('请输入正确得用户名和密码!')
+		            return false
+			    }
+        	},
+        	//注册
+        	registEvent (){
+        		const name = this.uname
+        		const pwd = this.upwd
+        		if (name.trim()!=''&&pwd.trim()!='') {
+        			this.getUserList(name)
 
-	    }
+        			if(!this.isRegist){
+						this.$wilddogRefs.userlist.push({
+						  name: name.trim(),
+						  pwd:pwd.trim()
+						})
+						this.Toast('注册成功!')
+        			}
+			    }
+        	},
+        	//查询用户列表
+        	getUserList (name){
+        		this.userlist.forEach(item => {
+	                if(item.name == name){
+			            this.Toast('注册失败,用户已经存在!')
+			            this.isRegist = true
+			            return false
+	                }else{
+	                	this.isRegist = false
+	                }
+	            })
+        	},
+        	//提示语
+        	Toast(text){
+        		Toast({
+	                message: text,
+	                position: 'middle',
+	                duration: 3000
+	            })
+	            return false
+        	}
+        }
     }
 
 </script>

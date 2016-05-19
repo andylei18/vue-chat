@@ -44,6 +44,9 @@
     "wildvue": "^1.0.4",
     "wilddog": "^0.6.2",
 
+    "canvas-shapes": "^1.1.5",
+    
+
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0",
