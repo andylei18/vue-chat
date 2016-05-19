@@ -6,9 +6,12 @@
   .v-cloak--block,.v-cloak--inline,.v-cloak--inlineBlock{
     display: none;
   }
+  .ui-app {
+      max-width: 750px;
+      margin: 0 auto;
+  }
   .ui-view {
-    min-width: 320px;
-    max-width: 750px;
+    
     margin-left: auto;
     margin-right: auto;
 
@@ -41,13 +44,13 @@
 </style>
 <template>
 
-  <div class="web-app unlogin">
+  <div class="web-app">
 
     <!-- 页面加载loading -->
     <loading :show="loading"></loading>
 
     <!-- 缓存一级路由切换的页面 -->
-    <router-view keep-alive :transition="effect" transition-mode="out-in"></router-view>
+    <router-view class="ui-view" keep-alive :transition="effect" transition-mode="out-in"></router-view>
 
   </div>
 
@@ -61,7 +64,7 @@
       data () {
         return {
           loading           : true,  //loading
-          effect            : '', //路由模板动画参数
+          effect            : 'fade', //路由模板动画参数
           routeList         : [],     //访问周期中所访问了那些路径,在route.js中设置
         }
       },

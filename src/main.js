@@ -8,10 +8,11 @@ import App from './app.vue'
 import Toast from 'vue-toast-mobile'
 window.Toast = Toast
 
-window.wilddog = wilddog
+
 
 Vue.use(VueRouter)
 Vue.use(WildVue)
+window.wilddog = wilddog
 
 Vue.config.debug = true
 

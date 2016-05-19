@@ -8,7 +8,7 @@ module.exports = function(router){
 
         },
         //首页
-        '/home':{
+        '/home/:uid':{
             name:'home',
             //异步处理大量数据
             component: function(reslove){
@@ -38,7 +38,7 @@ module.exports = function(router){
 
     //默认List主页
     router.redirect({
-        '/':"/home"
+        '/':"/login"
     });
 
 

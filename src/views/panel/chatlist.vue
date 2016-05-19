@@ -214,7 +214,7 @@
 	<!--BEGIN tab-->
     <div class="tab">
         <div class="tab_item" v-for="item in tab.list" track-by="$index">
-            <a class="chat" @click="clickChat(item,tab.list)" :title="item.name" href="#">
+            <a class="chat" @click="clickChat(item,tab.list)" :title="item.name">
             	<i class="{{'web_wechat_tab_'+ item.type}} {{item.ck?'web_wechat_tab_' + item.type +'_hl':''}}"></i>
             </a>
         </div>

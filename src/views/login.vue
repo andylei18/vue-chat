@@ -11,7 +11,7 @@
         <!--BEGIN login_box-->
         <div class="login_box">
             
-            <div class="form_wrap"> 
+            <div class="form_wrap" v-if="!isLogin"> 
 	            <div class="form_mod_wrap mb15">
 	            	<div class="form_mod"> 
 	            		<div> 
@@ -33,10 +33,10 @@
 	            </div>  
             </div>
 
+            <a v-else v-link="{name:'home',params:{uid:uid}}">登录过了亲，回到聊天界面了</a>
+
         </div>
         <!--END login_box-->
-
-        <canvas id="canvasFont" class="login_cancas"></canvas>
 
     </div>
 </template>
@@ -53,12 +53,15 @@
             return {
                 uname:"",
                 upwd:"",
-                isRegist:false
+                uid:"",
+                isRegist:false,
+                isLogin:false,
             }
         },
         route: {
 	        data (transition) {
 	          const self = this
+	          
 	          //请求列表全部数据
 	          self.$route.router.app.loading = false
 			  
@@ -85,8 +88,8 @@
         		if (name.trim()!=''&&pwd.trim()!='') {
 			        this.userlist.forEach(item => {
 		                if(item.name == name&&item.pwd == pwd){
-		                	
-				        	console.log(this)
+		                	sessionStorage.setItem("uid",item.id)
+				        	this.$router.go({name:'home',params:{uid:item.id}})
 		                }
 		            })
 			    }else{
@@ -96,6 +99,7 @@
         	},
         	//注册
         	registEvent (){
+        		let num = 0
         		const name = this.uname
         		const pwd = this.upwd
         		if (name.trim()!=''&&pwd.trim()!='') {
@@ -104,7 +108,8 @@
         			if(!this.isRegist){
 						this.$wilddogRefs.userlist.push({
 						  name: name.trim(),
-						  pwd:pwd.trim()
+						  pwd:pwd.trim(),
+						  id:'WX' + (new Date()).getTime()+(num++)
 						})
 						this.Toast('注册成功!')
         			}

@@ -1,13 +1,9 @@
 .login {
-    display: none;
     height: 100%;
     min-width: 860px;
     min-height: 700px;
     overflow: auto;
     position: relative;
-}
-.unlogin .login {
-    display: block;
 }
 .logo {
     position: absolute;
