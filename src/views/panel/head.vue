@@ -62,7 +62,7 @@
         <div class="info">
             <h3 class="nickname">
                 <span ng-bind-html="account.NickName" class="display_name ng-binding">aNdy🚴🏻</span>
-                <a class="opt" href="javascript:;" @click.stop="toggleSystemMenu()"><i class="web_wechat_add"></i></a>
+                <a class="opt" href="javascript:;" @click.stop="toggleSystemMenu($event)"><i class="web_wechat_add"></i></a>
             </h3>
         </div>
     </div>
@@ -78,7 +78,7 @@
         
         methods:{
         	//打开系统菜单
-        	toggleSystemMenu () {
+        	toggleSystemMenu (e) {
         		this.$parent.menu.show =!this.$parent.menu.show
         	}
         }

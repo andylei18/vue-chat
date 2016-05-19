@@ -36,6 +36,78 @@
         padding-left: 30px;
         font-size: 12px;
     }
+    .tab {
+        overflow: hidden;
+        position: relative;
+        padding-bottom: 4px
+    }
+
+    .tab .tab_item {
+        float: left;
+        width: 33.33333333%;
+        position: relative
+    }
+
+    .tab .tab_item:after {
+        content: '';
+        position: absolute;
+        top: 7px;
+        right: 0;
+        width: 0;
+        height: 20px;
+        border-right: 1px solid #24272C
+    }
+
+    .tab .tab_item.no_extra:after {
+        border-right: 0
+    }
+
+    .tab .tab_item a {
+        display: block;
+        text-align: center
+    }
+
+    .tab.no_reader .tab_item {
+        width: 50%
+    }
+
+    .tab:after {
+        content: '';
+        position: absolute;
+        border-bottom: 1px solid #24272C;
+        height: 0;
+        bottom: 0;
+        left: 0;
+        right: 0
+    }
+    .web_wechat_tab_chat {
+        background: url(../../../src/assets/images/panel/head/sprite.png) 0 -2048px;
+        width: 35px;
+        height: 35px;
+        vertical-align: middle;
+        display: inline-block;
+    }
+    .web_wechat_tab_chat_hl {
+        background: url(../../../src/assets/images/panel/head/sprite.png) 0 -2083px;
+        width: 35px;
+        height: 35px;
+        vertical-align: middle;
+        display: inline-block;
+    }
+    .web_wechat_tab_public {
+        background: url(../../../src/assets/images/panel/head/sprite.png) 0 -2232px;
+        width: 35px;
+        height: 35px;
+        vertical-align: middle;
+        display: inline-block;
+    }
+    .web_wechat_tab_friends {
+        background: url(../../../src/assets/images/panel/head/sprite.png) 0 -2140px;
+        width: 35px;
+        height: 35px;
+        vertical-align: middle;
+        display: inline-block;
+    }
 </style>
 <template>
 
@@ -66,6 +138,11 @@
         </div>
         <!--END tab-->
 
+        <!--BEGIN chat list-->
+        <list-module></list-module>
+        <!--END  chat list-->
+
+
 
         <!--BEGIN menu-->
         <menu-module :menu="menu"></menu-module>
@@ -81,12 +158,14 @@
     //局部业务组件
     import HeadModule from './head.vue' //head组件
     import MenuModule from './systemmenu.vue' //systemmenu组件
+    import ListModule from './chatlist.vue' //chatlist组件
 
 
     export default {
         components: {
              HeadModule,
-             MenuModule
+             MenuModule,
+             ListModule
         },
         data () {
             return {
