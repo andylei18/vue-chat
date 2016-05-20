@@ -39,7 +39,7 @@
     "vue-loader": "^8.3.0",
     "vue-style-loader": "^1.0.0",
     "vue-toast-mobile": "^0.0.6",
-
+    "vuex": "^0.6.2",
 
     "wildvue": "^1.0.4",
     "wilddog": "^0.6.2",
