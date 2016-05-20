@@ -5,7 +5,11 @@
 			<div class="inner">
 				<form id="login-form">
 					<p class="input-relative">
-						<input type="text" name="phone" placeholder="手机号（11位）" maxlength="11" required="required">
+						<input type="text" name="uname" placeholder="用户名（6位）" maxlength="6" required="required">
+						<span class="input-alert tag true fade-transition" style="display: none;"></span>
+					</p>
+					<p class="input-relative">
+						<input type="text" name="upsw" placeholder="密  码（11位）" maxlength="11" required="required">
 						<span class="input-alert tag true fade-transition" style="display: none;"></span>
 					</p>
 					<p class="text-right fade-right-transition" style="display: none;"><span class="button small gray">找回密码</span></p>
@@ -58,6 +62,9 @@
 	    cursor: pointer;
 	    -webkit-transition: color,.3s;
 	    transition: color,.3s;
+	}
+	.text-a:active, .text-a:hover {
+	    color: #007fff;
 	}
 	.modal-close {
 	    position: absolute;
