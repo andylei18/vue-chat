@@ -65,9 +65,9 @@ figure {
 }
 
 button,input,select,textarea {
-    font-family: inherit;
-    font-size: 100%;
-    margin: 0
+    color: inherit;
+    font: inherit;
+    margin: 0;
 }
 
 button,select {
@@ -81,6 +81,10 @@ button,html input[type=button],input[type=reset],input[type=submit] {
 
 button[disabled],html input[disabled] {
     cursor: default
+}
+
+input {
+    line-height: normal;
 }
 
 input[type=checkbox],input[type=radio] {

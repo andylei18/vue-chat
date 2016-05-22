@@ -3,32 +3,143 @@
 		<div class="container">
 			<div class="modal-close text-a"><i class="ion-close-round"></i></div>
 			<div class="inner">
-				<form id="login-form">
+				<div id="login-form">
 					<p class="input-relative">
-						<input type="text" name="uname" placeholder="用户名（6位）" maxlength="6" required="required">
-						<span class="input-alert tag true fade-transition" style="display: none;"></span>
+						<input type="text" name="uid" placeholder="用户名（6位）" maxlength="6" required="required" 
+							v-model="user.uid" 
+							@keyup="getUid(user.uid)">
+						<span class="input-alert tag true fade-transition" v-show="user.uid.trim().length==6" v-text="user.isUid?'用户名已存在':'用户名可注册'"></span>
 					</p>
-					<p class="input-relative">
-						<input type="text" name="upsw" placeholder="密  码（11位）" maxlength="11" required="required">
-						<span class="input-alert tag true fade-transition" style="display: none;"></span>
+					<p class="fade-right input-relative fade-right-transition" 
+						v-show="user.uid.trim().length==6">
+						<input type="text" name="nickname" placeholder="昵称" required="required" 
+							v-model="user.nickname">
+						<span class="input-alert tag true fade-transition" 
+							v-show="user.nickname.trim().length==0" 
+							v-text="user.nickname.trim().length==0?'请正确填写此字段':''">
+						</span>
 					</p>
-					<p class="text-right fade-right-transition" style="display: none;"><span class="button small gray">找回密码</span></p>
-				</form>
+					<p class="fade-right input-relative fade-right-transition" 
+						v-show="user.uid.trim().length==6">
+						<input type="text" style="display:none">
+						<input type="password" name="upwd" placeholder="密码（不少于6位）" autocomplete="off" required="required" minlength="6" 
+							v-model="user.upwd">
+						<span class="input-alert tag true fade-transition" 
+							v-show="user.upwd.trim().length<6" 
+							v-text="user.upwd.trim().length<6?'请正确填写此字段':''">
+						</span>
+					</p>
+					<div class="fade-right input-relative fade-right-transition avatar-list" 
+						v-show="user.uid.trim().length==6">
+						<img 
+						v-for="item in avatar" class="avatar-item" 
+						:src="item.url" 
+						:id="item.id" 
+						@click="ckImgEvent(item)"
+						:class="item.ck?'active':''">
+					</div>
+					<p class="text-right fade-right-transition" 
+						v-show="user.uid.trim().length==6">
+						<input type="button" value="注册" class="small"
+							v-el="submit"
+							@click="creatUser" :disabled="this.user.avatarid==''"> 
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
-  export default {
-      data () {
-        return {
-          
-        }
-      },
-      components:{
-      	
-      }
-  }
+	//查询野狗服务
+	import { UserList } from '../wilddog'
+
+	export default {
+	  data () {
+	    return {
+	      avatar:[
+	      	{id:"chatAvatar1",url:"http://o7kxl993s.bkt.clouddn.com/chatAvatar1.jpg",ck:false},
+	      	{id:"chatAvatar2",url:"http://o7kxl993s.bkt.clouddn.com/chatAvatar2.jpg",ck:false},
+	      	{id:"chatAvatar3",url:"http://o7kxl993s.bkt.clouddn.com/chatAvatar3.jpg",ck:false},
+	      	{id:"chatAvatar4",url:"http://o7kxl993s.bkt.clouddn.com/chatAvatar4.jpg",ck:false},
+	      	{id:"chatAvatar5",url:"http://o7kxl993s.bkt.clouddn.com/chatAvatar5.jpg",ck:false},
+	      	{id:"chatAvatar6",url:"http://o7kxl993s.bkt.clouddn.com/chatAvatar6.jpg",ck:false},
+	      	{id:"chatAvatar7",url:"http://o7kxl993s.bkt.clouddn.com/chatAvatar7.jpg",ck:false},
+	      	{id:"chatAvatar8",url:"http://o7kxl993s.bkt.clouddn.com/chatAvatar8.jpg",ck:false},
+	      	{id:"chatAvatar9",url:"http://o7kxl993s.bkt.clouddn.com/chatAvatar9.jpg",ck:false}
+	      ],
+	      user:{
+	      	uid:"",
+	      	isUid:false,
+	      	nickname:"",
+	      	upwd:"",
+	      	avatarid:""
+	      }
+	    }
+	  },
+	  components:{
+	  	
+	  },
+	  methods:{
+	  	//头像选择
+	  	ckImgEvent (obj){
+	  		this.avatar.forEach(item => {
+	  			item.ck = false
+            })
+            obj.ck = true
+            this.user.avatarid = obj.id
+	  	},
+	  	//查询用户名
+	  	getUid (uid){
+	  		const self = this
+	  		if(uid.trim()!=""&&uid.trim().length==6){
+	  			UserList.orderByChild("uid").equalTo(uid).on("child_added", function(snapshot) {
+				    let uids = snapshot.val().uid
+				    console.log(snapshot)
+				    if(self.user.uid == uids){
+				    	self.user.isUid = true
+				    	return false
+				    }
+				}, function (errorObject) {
+				    console.log("The read failed: " + errorObject.code);
+				});
+				self.user.isUid = false
+	  		}
+	  	},
+	  	//新建用户
+	  	creatUser (){
+	  		const uid = this.user.uid.trim()
+	  		const nickname = this.user.nickname.trim()
+	  		const upwd = this.user.upwd.trim()
+	  		const timestamp = Date.now()
+  			const timeid = 'wx_' + timestamp
+
+  			if(!this.user.isUid ){
+
+				if(uid.length>0&&uid.length<6){
+		  			return false
+		  		}
+		  		if(nickname.length==0){
+		  			return false
+		  		}
+		  		if(uid.length>0&&uid.length<6){
+		  			return false
+		  		}
+		  		UserList.push({
+				    uid:this.user.uid,
+			      	nickname:this.user.nickname,
+			      	upwd:this.user.upwd,
+			      	avatarid:this.user.avatarid,
+			      	crtime:timeid
+				});
+
+				this.getUid(uid)
+  			}
+
+	  		
+	  	}
+	  }
+	}
+
 </script>
 <style>
 	.modal {
@@ -82,14 +193,14 @@
 	.input-relative {
 	    position: relative;
 	}
-    input[type=text]{
+    input[type=text],input[type=password],input[type=button]{
 	    padding: .5em 0;
 	    width: 100%;
 	    display: block;
 	    border: none;
 	    box-shadow: none;
 	}
-	input[type=text], input[type=url], textarea {
+	input[type=text], input[type=url], input[type=password],textarea {
 	    border-bottom: 1px solid #ddd;
 	    -webkit-transition: border,.3s;
 	    transition: border,.3s;
@@ -116,5 +227,42 @@
 	    color: #007fff;
 	    border-color: rgba(0,127,255,.15);
 	    background-color: rgba(0,127,255,.05);
+	}
+	.text-right {
+	    text-align: right;
+	}
+	.button.small, a.button.small, button.small, input[type=button].small {
+	    display: inline-block;
+	    width: auto;
+	    padding: .5em 1em;
+	}
+	input[type=button][disabled] {
+	    background-color: #ddd;
+	    color: #fff;
+	}
+	input[type=password]:focus, input[type=text]:focus, input[type=url]:focus, textarea:focus {
+	    border-color: #007fff;
+	}
+	.button, a.button, button, input[type=button] {
+	    -webkit-appearance: none;
+	    background: #007fff;
+	    color: #fff;
+	    border-radius: 2px;
+	}
+	.avatar-list {
+	    padding:10px;
+	}
+	.avatar-item {
+	    background-size: contain;
+	    display: inline-block;
+	    height: 60px;
+	    width: 60px;
+	    margin: 10px;
+	    border-radius: 50%;
+	}
+	.avatar-item:hover,.avatar-item:active,.avatar-item.active{
+		cursor: pointer;
+		border: 5px solid #eb7350;
+    	background: #fff9ec;
 	}
 </style>
