@@ -6,7 +6,7 @@
     <head-module></head-module>
     <!--END   头部组件-->
     <!--BEGIN 登录注册组件-->
-    <modal-module></modal-module>
+    <modal-module :login.sync ="login"></modal-module>
     <!--BEGIN 登录注册组件-->
 
 
@@ -25,7 +25,10 @@
   export default {
       data () {
         return {
-          
+          login:{
+            show:false,
+            isLogin:false
+          }
         }
       },
       components:{

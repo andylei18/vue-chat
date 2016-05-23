@@ -1,7 +1,7 @@
 <template>
-	<div class="modal open">
+	<div class="modal" :class="login.show?'open':''">
 		<div class="container">
-			<div class="modal-close text-a"><i class="ion-close-round"></i></div>
+			<div class="modal-close text-a" @click="this.login.show =!this.login.show"><i class="ion-close-round"></i></div>
 			<div class="inner">
 				<div id="login-form">
 					<p class="input-relative">
@@ -11,7 +11,7 @@
 						<span class="input-alert tag true fade-transition" v-show="user.uid.trim().length==6" v-text="user.isUid?'用户名已存在':'用户名可注册'"></span>
 					</p>
 					<p class="fade-right input-relative fade-right-transition" 
-						v-show="user.uid.trim().length==6">
+						v-show="user.uid.trim().length==6&&!user.isUid">
 						<input type="text" name="nickname" placeholder="昵称" required="required" 
 							v-model="user.nickname">
 						<span class="input-alert tag true fade-transition" 
@@ -30,7 +30,7 @@
 						</span>
 					</p>
 					<div class="fade-right input-relative fade-right-transition avatar-list" 
-						v-show="user.uid.trim().length==6">
+						v-show="user.uid.trim().length==6&&!user.isUid">
 						<img 
 						v-for="item in avatar" class="avatar-item" 
 						:src="item.url" 
@@ -41,8 +41,9 @@
 					<p class="text-right fade-right-transition" 
 						v-show="user.uid.trim().length==6">
 						<input type="button" value="注册" class="small"
-							v-el="submit"
-							@click="creatUser" :disabled="this.user.avatarid==''"> 
+							@click="creatUser" :disabled="this.user.avatarid==''" v-show="!user.isUid"> 
+						<input type="button" value="登陆" class="small"
+							@click="loginEvent" :disabled="!this.user.isUid"> 
 					</p>
 				</div>
 			</div>
@@ -55,6 +56,7 @@
 	//查询野狗服务
 	import { UserList } from '../wilddog'
 
+	//公用组件
 	import {
 	  comToast,
 	} from '../components/index'
@@ -75,10 +77,10 @@
 	      ],
 	      user:{
 	      	uid:"",
-	      	isUid:false,
+	      	isUid:true,
 	      	nickname:"",
 	      	upwd:"",
-	      	avatarid:""
+	      	avatarid:""	      
 	      },
 	      toast: {
 	        message: '',
@@ -86,6 +88,7 @@
 	      }
 	    }
 	  },
+	  props:['login'],
 	  components:{
 	  	comToast
 	  },
@@ -104,16 +107,13 @@
 	  		const uidValue = uid.trim()
 	  		if(uidValue!=""&&uidValue.length==6){
 	  			self.user.isUid = false
-
-	  			UserList.once("value", function(snapshot) {
-	  				
+	  			UserList.once("value", (snapshot) =>{
 				    snapshot.forEach(item => {
 			  			if(item.val().uid===uidValue){
 			  				self.user.isUid = true
 			  			}
 		            })
-			    	
-				}, function (errorObject) {
+				},(errorObject) => {
 				    console.log("The read failed: " + errorObject.code);
 				});
 	  		}
@@ -145,18 +145,40 @@
 			      	avatarid:this.user.avatarid,
 			      	crtime:timeid
 				});
-		  		this.creatToast("用户注册成功!")
-		  		//查询用户是否存在
-				this.getUid(uid)
+		  		this.creatToast("注册成功!")
   			}
+	  	},
+	  	//登陆
+	  	loginEvent (){
+			const uid = this.user.uid.trim()
+	  		const upwd = this.user.upwd.trim()
 
-	  		
+			UserList.orderByChild("uid").limitToFirst(1).on("child_added",(snapshot) =>{
+				const userid = 	snapshot.val().uid
+				const userpwd = snapshot.val().upwd
+				const nickname = snapshot.val().nickname
+				const avatarid = snapshot.val().avatarid
+				if(userid==uid&&userpwd==upwd){
+					const usersession = JSON.stringify(snapshot.val())
+					sessionStorage.setItem("user",usersession)
+					sessionStorage.setItem("isLogin",true)
+					this.creatToast("登陆成功!")
+					this.login.isLogin = true
+					setTimeout(() => {
+				        this.login.show = false
+				    }, 2000)
+				}else{
+					this.creatToast("密码错误,请重新输入!")
+					return false
+				}
+			},(errorObject) => {
+			    console.log("The read failed: " + errorObject.code);
+			});
 	  	},
 	  	//统一toast
 	  	creatToast (message) {
 	      this.toast.message = message
 	      this.toast.show = true
-	    
 	    },
 
 	  }
@@ -164,6 +186,12 @@
 
 </script>
 <style>
+	[v-cloak]{
+		display: none;
+	}
+	.v-cloak--block,.v-cloak--inline,.v-cloak--inlineBlock{
+		display: none;
+	}
 	.modal {
 	    position: fixed;
 	    z-index: 4;
@@ -180,12 +208,6 @@
 	.modal.open {
 	    -webkit-transform: translateY(30em);
 	    transform: translateY(30em);
-	}
-	.container {
-	    width: 960px;
-	    margin-left: auto;
-	    margin-right: auto;
-	    position: relative;
 	}
 	.modal .container {
 	    padding-left: 1em;

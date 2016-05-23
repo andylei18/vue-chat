@@ -8,14 +8,6 @@ body {
     line-height: 1.6
 }
 
-input,textarea,button,a {
-    outline: 0
-}
-
-body,h1,h2,h3,h4,h5,h6,p,ul,ol,dl,dd,fieldset,textarea {
-    margin: 0
-}
-
 body {
     font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei","å¾®è½¯é›…é»‘",Arial,sans-serif;
     height: 100%;
@@ -25,11 +17,6 @@ body {
     background-position: top left;
     background-attachment: fixed;
 }
-
-fieldset,legend,textarea,input {
-    padding: 0
-}
-
 ul,ol {
     padding-left: 0;
     list-style-type: none
@@ -124,7 +111,9 @@ select {
     border-radius: 0;
     -webkit-border-radius: 0
 }
-
+img {
+    border: 0;
+}
 a .btn {
     text-decoration: none
 }
@@ -166,4 +155,7 @@ a .btn {
 }
 .ion-close-round:before {
     content: "\F129";
+}
+.ion-more:before {
+    content: "\F20B";
 }
