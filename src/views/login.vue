@@ -91,18 +91,21 @@
 	  	//查询用户名
 	  	getUid (uid){
 	  		const self = this
-	  		if(uid.trim()!=""&&uid.trim().length==6){
-	  			UserList.orderByChild("uid").equalTo(uid).on("child_added", function(snapshot) {
-				    let uids = snapshot.val().uid
-				    console.log(snapshot)
-				    if(self.user.uid == uids){
-				    	self.user.isUid = true
-				    	return false
-				    }
+	  		const uidValue = uid.trim()
+	  		if(uidValue!=""&&uidValue.length==6){
+	  			self.user.isUid = false
+
+	  			UserList.once("value", function(snapshot) {
+	  				
+				    snapshot.forEach(item => {
+			  			if(item.val().uid===uidValue){
+			  				self.user.isUid = true
+			  			}
+		            })
+			    	
 				}, function (errorObject) {
 				    console.log("The read failed: " + errorObject.code);
 				});
-				self.user.isUid = false
 	  		}
 	  	},
 	  	//新建用户
@@ -132,6 +135,7 @@
 			      	crtime:timeid
 				});
 
+		  		//查询用户是否存在
 				this.getUid(uid)
   			}
 
