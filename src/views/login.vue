@@ -47,11 +47,17 @@
 				</div>
 			</div>
 		</div>
+
+		<com-toast :toast="toast"></com-toast>
 	</div>
 </template>
 <script>
 	//查询野狗服务
 	import { UserList } from '../wilddog'
+
+	import {
+	  comToast,
+	} from '../components/index'
 
 	export default {
 	  data () {
@@ -73,11 +79,15 @@
 	      	nickname:"",
 	      	upwd:"",
 	      	avatarid:""
+	      },
+	      toast: {
+	        message: '',
+	        show: false
 	      }
 	    }
 	  },
 	  components:{
-	  	
+	  	comToast
 	  },
 	  methods:{
 	  	//头像选择
@@ -127,6 +137,7 @@
 		  		if(uid.length>0&&uid.length<6){
 		  			return false
 		  		}
+
 		  		UserList.push({
 				    uid:this.user.uid,
 			      	nickname:this.user.nickname,
@@ -134,13 +145,20 @@
 			      	avatarid:this.user.avatarid,
 			      	crtime:timeid
 				});
-
+		  		this.creatToast("用户注册成功!")
 		  		//查询用户是否存在
 				this.getUid(uid)
   			}
 
 	  		
-	  	}
+	  	},
+	  	//统一toast
+	  	creatToast (message) {
+	      this.toast.message = message
+	      this.toast.show = true
+	    
+	    },
+
 	  }
 	}
 
