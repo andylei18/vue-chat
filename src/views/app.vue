@@ -1,5 +1,5 @@
 <style src="../assets/styles/base.css"></style>
-
+<style src="../assets/styles/chatlist.css"></style>
 <template>
   <div class="wxchat">
     <!--BEGIN 头部组件-->
@@ -10,7 +10,7 @@
     <modal-module :login.sync ="login"></modal-module>
     <!--BEGIN 登录注册组件-->
 
-    <div id="chatmodule" v-show="login.isLogin">
+    <div id="chatmodule" v-show="login.isLogin" class="chatapp">
       <!--BEGIN 对话列表组件-->
       <tlist-module></tlist-module>
       <!--BEGIN 对话列表组件-->

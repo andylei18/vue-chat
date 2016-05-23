@@ -59,7 +59,7 @@
     img.loadline+span, span+img.loadline {
         margin-left: .5em;
     }
-    .inner {
+    .innercover {
         width: 100%;
         height: 32px;
         line-height: 32px;
@@ -70,7 +70,7 @@
         <a href="#" class="logo-img">
             <img src="../../src/assets/images/common/logo.png" class="loadline">
         </a>
-        <div class="inner">
+        <div class="innercover">
             <i class="icon-load"></i>
             <span>加载中</span>
         </div>

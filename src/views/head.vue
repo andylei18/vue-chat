@@ -12,10 +12,10 @@
 				<li class="action" @click="this.$parent.login.show =!this.$parent.login.show" v-show="!$parent.login.isLogin"><i class="ion-log-in"></i>
 					<span>登录 / 注册</span>
 				</li>
-				<li class="action action-nav" @click="this.navbar.show =!this.navbar.show" v-show="$parent.login.isLogin">
+				<li class="action action-nav" @click.stop="this.navbar.show =!this.navbar.show" v-show="$parent.login.isLogin">
 					<i class="ion-more action-nav-active"></i>
 					<ul class="action-list" v-show="navbar.show">
-						<li><a href="/about" target="_blank">我的世界</a></li>
+						<li><a href="https://github.com/andylei18" target="_blank">我的GitHub</a></li>
 						<li class="hr"></li>
 						<li @click="outLogin">登出</li>
 					</ul>
@@ -45,6 +45,12 @@
 	  },
 	  compiled (){
 	  	this.getUser()
+	  },
+	  ready () {
+		 document.addEventListener('click', this.navbarClose)
+	  },
+	  destroy () {
+		 document.removeEventListener('click', this.navbarClose)
 	  },
 	  methods:{
 	  	//根据session查询
@@ -79,6 +85,10 @@
 			this.$parent.login.isLogin = false
 			sessionStorage.setItem("isLogin",false)
 			this.$parent.creatToast("退出成功!")
+	  	},
+	  	//关闭navbar
+	  	navbarClose (){
+	  		this.navbar.show = false
 	  	}
 	  }
 	}

@@ -10,7 +10,7 @@ body {
 
 body {
     font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei","å¾®è½¯é›…é»‘",Arial,sans-serif;
-    height: 100%;
+    overflow: hidden;
     background-color: #ffffff;
     background-image: url('../images/common/bg.png');
     background-repeat: repeat;
