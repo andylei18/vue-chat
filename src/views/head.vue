@@ -15,7 +15,7 @@
 				<li class="action action-nav" @click="this.navbar.show =!this.navbar.show" >
 					<i class="ion-more action-nav-active"></i>
 					<ul class="action-list" v-show="navbar.show">
-						<li><a href="/about" target="_blank">关于我们</a></li>
+						<li><a href="/about" target="_blank">我的世界</a></li>
 						<li class="hr"></li>
 						<li @click="outLogin">登出</li>
 					</ul>
@@ -23,8 +23,11 @@
 			</ul>
 		</div>
 	</header>
+
 </template>
 <script>
+
+
 	export default {
 	  data () {
 	    return {
@@ -38,7 +41,7 @@
 	    }
 	  },
 	  components:{
-
+	  	
 	  },
 	  compiled (){
 	  	this.getUser()
@@ -47,32 +50,35 @@
 	  	//根据session查询
 	  	getUser (){
 	  		const isLogin = sessionStorage.getItem("isLogin")
-	  		
 	  		const update = () =>{
 	  			const userinsession = JSON.parse(sessionStorage.getItem("user"))
-	  			this.session.nickname = userinsession.nickname
+				this.session.nickname = userinsession.nickname
 	  			this.session.avatarimg = 'http://o7kxl993s.bkt.clouddn.com/'+ userinsession.avatarid +'.jpg'
 	  			this.$parent.login.isLogin = true
 	  		}
 	  		//已登陆状态
-	  		if(isLogin){
+	  		if(isLogin == "true"){
 				update()
 	  		}
 	  		//没有session未登陆状态
 	  		else{
-	  			if(userinsession!=null){
-	  				update()
-		  		}else{
-		  			this.session.nickname = ""
-		  			this.session.avatarimg = ""
-		  		}
+	  			this.session.nickname = ""
+		  		this.session.avatarimg = ""
 	  		}
-	  		
-	  		
 	  	},
 	  	//退出登陆
 	  	outLogin (){
-
+			sessionStorage.removeItem("user")
+			this.$parent.user = {
+		      	uid:"",
+		      	isUid:true,
+		      	nickname:"",
+		      	upwd:"",
+		      	avatarid:""	  
+	      	}
+			this.$parent.login.isLogin = false
+			sessionStorage.setItem("isLogin",false)
+			this.$parent.creatToast("退出成功!")
 	  	}
 	  }
 	}

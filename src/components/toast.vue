@@ -22,11 +22,11 @@ export default {
 <style>
 #wx_toast{
     position: fixed;
-    bottom: 0;
+    top: 50%;
     right: 0;
     left: 0;
     margin: auto;
-    background: #2E2E2E;
+    background: #82b9eb;
     padding: 15px;
     border-radius: 2px;
     color: #fff;

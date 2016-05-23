@@ -49,17 +49,12 @@
 			</div>
 		</div>
 
-		<com-toast :toast="toast"></com-toast>
+		
 	</div>
 </template>
 <script>
 	//查询野狗服务
 	import { UserList } from '../wilddog'
-
-	//公用组件
-	import {
-	  comToast,
-	} from '../components/index'
 
 	export default {
 	  data () {
@@ -81,16 +76,12 @@
 	      	nickname:"",
 	      	upwd:"",
 	      	avatarid:""	      
-	      },
-	      toast: {
-	        message: '',
-	        show: false
 	      }
 	    }
 	  },
 	  props:['login'],
 	  components:{
-	  	comToast
+	  	
 	  },
 	  methods:{
 	  	//头像选择
@@ -125,8 +116,9 @@
 	  		const upwd = this.user.upwd.trim()
 	  		const timestamp = Date.now()
   			const timeid = 'wx_' + timestamp
+  			const isUid = this.user.isUid 
 
-  			if(!this.user.isUid ){
+  			if(!isUid ){
 
 				if(uid.length>0&&uid.length<6){
 		  			return false
@@ -145,13 +137,14 @@
 			      	avatarid:this.user.avatarid,
 			      	crtime:timeid
 				});
-		  		this.creatToast("注册成功!")
+				this.getUid(uid)
+		  		this.$parent.creatToast("注册成功!")
   			}
 	  	},
 	  	//登陆
 	  	loginEvent (){
-			const uid = this.user.uid.trim()
-	  		const upwd = this.user.upwd.trim()
+			let uid = this.user.uid.trim()
+	  		let upwd = this.user.upwd.trim()
 
 			UserList.orderByChild("uid").limitToFirst(1).on("child_added",(snapshot) =>{
 				const userid = 	snapshot.val().uid
@@ -162,24 +155,20 @@
 					const usersession = JSON.stringify(snapshot.val())
 					sessionStorage.setItem("user",usersession)
 					sessionStorage.setItem("isLogin",true)
-					this.creatToast("登陆成功!")
+					this.$parent.creatToast("登陆成功!")
 					this.login.isLogin = true
 					setTimeout(() => {
 				        this.login.show = false
 				    }, 2000)
 				}else{
-					this.creatToast("密码错误,请重新输入!")
+					this.$parent.creatToast("密码错误,请重新输入!")
 					return false
 				}
 			},(errorObject) => {
 			    console.log("The read failed: " + errorObject.code);
 			});
 	  	},
-	  	//统一toast
-	  	creatToast (message) {
-	      this.toast.message = message
-	      this.toast.show = true
-	    },
+	  	
 
 	  }
 	}
