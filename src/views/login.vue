@@ -8,7 +8,11 @@
 						<input type="text" name="uid" placeholder="用户名（6位）" maxlength="6" required="required" 
 							v-model="user.uid" 
 							@keyup="getUid(user.uid)">
-						<span class="input-alert tag true fade-transition" v-show="user.uid.trim().length==6" v-text="user.isUid?'用户名已存在':'用户名可注册'"></span>
+						<span class="input-alert tag true fade-transition" 
+							v-show="user.uid.trim().length==6" 
+							v-text="user.isUid?'用户名已存在':'用户名可注册'" 
+							transition="showfade">
+						</span>
 					</p>
 					<p class="fade-right input-relative fade-right-transition" 
 						v-show="user.uid.trim().length==6&&!user.isUid">
@@ -16,11 +20,13 @@
 							v-model="user.nickname">
 						<span class="input-alert tag true fade-transition" 
 							v-show="user.nickname.trim().length==0" 
-							v-text="user.nickname.trim().length==0?'请正确填写此字段':''">
+							v-text="user.nickname.trim().length==0?'请正确填写此字段':''"
+							transition="showfade">
 						</span>
 					</p>
 					<p class="fade-right input-relative fade-right-transition" 
-						v-show="user.uid.trim().length==6">
+						v-show="user.uid.trim().length==6" 
+						transition="showfade">
 						<input type="text" style="display:none">
 						<input type="password" name="upwd" placeholder="密码（不少于6位）" autocomplete="off" required="required" minlength="6" 
 							v-model="user.upwd">
@@ -30,7 +36,8 @@
 						</span>
 					</p>
 					<div class="fade-right input-relative fade-right-transition avatar-list" 
-						v-show="user.uid.trim().length==6&&!user.isUid">
+						v-show="user.uid.trim().length==6&&!user.isUid" 
+						transition="showfade">
 						<img 
 						v-for="item in avatar" class="avatar-item" 
 						:src="item.url" 
@@ -41,9 +48,13 @@
 					<p class="text-right fade-right-transition" 
 						v-show="user.uid.trim().length==6">
 						<input type="button" value="注册" class="small"
-							@click="creatUser" :disabled="this.user.avatarid==''" v-show="!user.isUid"> 
+							@click="creatUser" 
+							:disabled="this.user.avatarid==''" 
+							v-show="!user.isUid" 
+							transition="showfade"> 
 						<input type="button" value="登陆" class="small"
-							@click="loginEvent" :disabled="!this.user.isUid"> 
+							@click="loginEvent" 
+							:disabled="!this.user.isUid"> 
 					</p>
 				</div>
 			</div>
@@ -155,11 +166,15 @@
 					const usersession = JSON.stringify(snapshot.val())
 					sessionStorage.setItem("user",usersession)
 					sessionStorage.setItem("isLogin",true)
+					this.$parent.$refs.head.session = {
+						nickname:nickname,
+            			avatarimg:'http://o7kxl993s.bkt.clouddn.com/'+ avatarid +'.jpg'
+					}
 					this.$parent.creatToast("登陆成功!")
 					this.login.isLogin = true
 					setTimeout(() => {
 				        this.login.show = false
-				    }, 2000)
+				    }, 1500)
 				}else{
 					this.$parent.creatToast("密码错误,请重新输入!")
 					return false
@@ -297,5 +312,17 @@
 		cursor: pointer;
 		border: 5px solid #eb7350;
     	background: #fff9ec;
+	}
+	/* 必需 */
+	.showfade-transition {
+	  transition: all .3s ease;
+	  opacity: 1;
+	  overflow: hidden;
+	}
+
+	/* .expand-enter 定义进入的开始状态 */
+	/* .expand-leave 定义离开的结束状态 */
+	.showfade-enter, .showfade-leave {
+	  opacity: 0;
 	}
 </style>

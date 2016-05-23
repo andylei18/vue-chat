@@ -52,11 +52,11 @@
     .logo-img{
         border-bottom: 1px solid #f5f5f5;
     }
-    img.inline {
+    img.loadline {
         height: 50px;
         width: 180px;
     }
-    img.inline+span, span+img.inline {
+    img.loadline+span, span+img.loadline {
         margin-left: .5em;
     }
     .inner {
@@ -66,9 +66,9 @@
     }
 </style>
 <template>
-    <div id=loading-cover class="vertical-center text-center" :class="show?'':'done'">
+    <div id=loading-cover class="vertical-center text-center" :class="cover.show?'':'done'">
         <a href="#" class="logo-img">
-            <img src="../../src/assets/images/common/logo.png" class="inline">
+            <img src="../../src/assets/images/common/logo.png" class="loadline">
         </a>
         <div class="inner">
             <i class="icon-load"></i>
@@ -78,6 +78,6 @@
 </template>
 <script>
     export default {
-        props:['show']
+        props:['cover']
     }
 </script>

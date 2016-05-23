@@ -12,7 +12,7 @@
 				<li class="action" @click="this.$parent.login.show =!this.$parent.login.show" v-show="!$parent.login.isLogin"><i class="ion-log-in"></i>
 					<span>登录 / 注册</span>
 				</li>
-				<li class="action action-nav" @click="this.navbar.show =!this.navbar.show" >
+				<li class="action action-nav" @click="this.navbar.show =!this.navbar.show" v-show="$parent.login.isLogin">
 					<i class="ion-more action-nav-active"></i>
 					<ul class="action-list" v-show="navbar.show">
 						<li><a href="/about" target="_blank">我的世界</a></li>

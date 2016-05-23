@@ -11,7 +11,7 @@ export default {
           if(val){
               setTimeout(function(){
                   self.toast.show = false
-              },3000)
+              },1500)
           }
 
       }
