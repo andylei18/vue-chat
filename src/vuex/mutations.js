@@ -8,7 +8,7 @@ export default {
     messages.forEach((msg) => {
       msg = msg.val()
       if (!state.threads[msg.threadID]) {
-        createThread(state, msg.threadID, msg.authorName)
+        createThread(state, msg.threadID, msg.authorName , msg.authorImg)
       }
       if (!latestMessage || msg.crtime > latestMessage.crtime) {
         latestMessage = msg
@@ -27,10 +27,11 @@ export default {
   }
 }
 
-function createThread (state, id, name) {
+function createThread (state, id, name , img) {
   set(state.threads, id, {
     id,
     name,
+    img,
     messages: [],
     lastMessage: null
   })

@@ -157,6 +157,7 @@
 				MessageList.push({
 				    threadID:this.user.uid,
 		      		authorName:this.user.nickname,
+		      		authorImg:this.user.avatarimg,
 					id: messageid,
 				    threadName: '测试',
 				    text: '',
