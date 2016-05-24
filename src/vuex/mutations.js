@@ -4,22 +4,18 @@ import * as types from './mutation-types'
 export default {
   [types.RECEIVE_ALL] (state, messages) {
     let latestMessage
-    console.log(state)
-    console.log(messages)
-    messages.forEach(message => {
-      // create new thread if the thread doesn't exist
-      if (!state.threads[message.threadID]) {
-        createThread(state, message.threadID, message.threadName)
+
+    messages.forEach((msg) => {
+      msg = msg.val()
+      if (!state.threads[msg.uid]) {
+        createThread(state, msg.uid, msg.nickname)
       }
-      // mark the latest message
-      if (!latestMessage || message.timestamp > latestMessage.timestamp) {
-        latestMessage = message
+      if (!latestMessage || msg.crtime > latestMessage.crtime) {
+        latestMessage = msg
       }
-      // add message
-      addMessage(state, message)
+      addMessage(state, msg)
     })
-    // set initial thread to the one with the latest message
-    setCurrentThread(state, latestMessage.threadID)
+    setCurrentThread(state, latestMessage.uid)
   },
 
   [types.RECEIVE_MESSAGE] (state, message) {
@@ -40,21 +36,21 @@ function createThread (state, id, name) {
   })
 }
 
-function addMessage (state, message) {
+function addMessage (state, msg) {
   // add a `isRead` field before adding the message
-  message.isRead = message.threadID === state.currentThreadID
-  // add it to the thread it belongs to
-  const thread = state.threads[message.threadID]
-  if (!thread.messages.some(id => id === message.id)) {
-    thread.messages.push(message.id)
-    thread.lastMessage = message
-  }
-  // add it to the messages map
-  set(state.messages, message.id, message)
+  // msg.isRead = msg.threadID === state.currentThreadID
+  // // add it to the thread it belongs to
+  // const thread = state.threads[msg.threadID]
+  // if (!thread.messages.some(id => id === msg.id)) {
+  //   thread.messages.push(msg.id)
+  //   thread.lastMessage = msg
+  // }
+  // // add it to the messages map
+  // set(state.messages, msg.id, msg)
 }
 
 function setCurrentThread (state, id) {
   state.currentThreadID = id
   // mark thread as read
-  state.threads[id].lastMessage.isRead = true
+  //state.threads[id].lastMessage.isRead = true
 }

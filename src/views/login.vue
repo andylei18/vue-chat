@@ -126,7 +126,7 @@
 	  		const nickname = this.user.nickname.trim()
 	  		const upwd = this.user.upwd.trim()
 	  		const timestamp = Date.now()
-  			const timeid = 'wx_' + timestamp
+  			const timeid = timestamp
   			const isUid = this.user.isUid
 
   			if(!isUid ){

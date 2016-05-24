@@ -31,6 +31,17 @@
       },
       ready (){
         //this.showToast('11111111111111111111111')
+        console.log(this.threads)
+      },
+      computed: {
+        unreadCount () {
+          // const threads = this.threads
+          // return Object.keys(threads).reduce((count, id) => {
+          //   return threads[id].lastMessage.isRead
+          //     ? count
+          //     : count + 1
+          // }, 0)
+        }
       }
   }
 </script>
