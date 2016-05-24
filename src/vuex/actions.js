@@ -15,3 +15,8 @@ export const getAllMessages = ({ dispatch }) => {
     dispatch(types.RECEIVE_ALL, messages)
   })
 }
+//切换用户
+export const switchThread = ({ dispatch }, id) => {
+  console.log(id)
+  dispatch(types.SWITCH_THREAD, id)
+}
