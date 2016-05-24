@@ -27,7 +27,6 @@
 </template>
 <script>
 
-
 	export default {
 	  data () {
 	    return {
@@ -47,18 +46,18 @@
 	  	this.getUser()
 	  },
 	  ready () {
-		 document.addEventListener('click', this.navbarClose)
+		  document.addEventListener('click', this.navbarClose)
 	  },
 	  destroy () {
-		 document.removeEventListener('click', this.navbarClose)
+		  document.removeEventListener('click', this.navbarClose)
 	  },
 	  methods:{
 	  	//根据session查询
 	  	getUser (){
 	  		const isLogin = sessionStorage.getItem("isLogin")
-	  		const update = () =>{
+	  		const update = () => {
 	  			const userinsession = JSON.parse(sessionStorage.getItem("user"))
-				this.session.nickname = userinsession.nickname
+					this.session.nickname = userinsession.nickname
 	  			this.session.avatarimg = userinsession.avatarimg
 	  			this.$parent.login.isLogin = true
 	  		}
@@ -74,17 +73,17 @@
 	  	},
 	  	//退出登陆
 	  	outLogin (){
-			sessionStorage.removeItem("user")
-			this.$parent.user = {
-		      	uid:"",
-		      	isUid:true,
-		      	nickname:"",
-		      	upwd:"",
-		      	avatarimg:""
-	      	}
-			this.$parent.login.isLogin = false
-			sessionStorage.setItem("isLogin",false)
-			this.$parent.creatToast("退出成功!")
+				sessionStorage.removeItem("user")
+				this.$parent.$refs.login.user = {
+			      	uid:"",
+			      	isUid:true,
+			      	nickname:"",
+			      	upwd:"",
+			      	avatarimg:""
+		    }
+				this.$parent.login.isLogin = false
+				sessionStorage.setItem("isLogin",false)
+				this.$parent.creatToast("退出成功!")
 	  	},
 	  	//关闭navbar
 	  	navbarClose (){

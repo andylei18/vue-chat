@@ -7,7 +7,7 @@
     <!--END   头部组件-->
 
     <!--BEGIN 登录注册组件-->
-    <modal-module :login.sync ="login"></modal-module>
+    <modal-module :login.sync ="login" v-ref:login></modal-module>
     <!--BEGIN 登录注册组件-->
 
     <div id="chatmodule" v-show="login.isLogin" class="chatapp">
@@ -19,7 +19,7 @@
       <mlist-module></mlist-module>
       <!--BEGIN 消息列表组件-->
     </div>
-    
+
     <!--BEGIN 提示组件-->
     <com-toast :toast="toast"></com-toast>
     <!--BEGIN 提示组件-->

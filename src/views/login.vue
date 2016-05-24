@@ -124,6 +124,7 @@
 	  		const upwd = this.user.upwd.trim()
 	  		const timestamp = Date.now()
   			const timeid = timestamp
+				const messageid = 'm' + timestamp
   			const isUid = this.user.isUid
 
   			if(!isUid ){
@@ -156,7 +157,10 @@
 					MessageList.push({
 					    threadID:this.user.uid,
 			      	authorName:this.user.nickname,
-							crtime:timeid
+							id: messageid,
+					    threadName: '测试',
+					    text: '',
+					    timestamp: timeid
 					})
 					this.getUid(uid)
 					this.setSession(usersession)
@@ -179,18 +183,10 @@
 						const nickname = snap.nickname
 						const avatarimg = snap.avatarimg
 						if(userid==uid&&userpwd==upwd){
-
-							// sessionStorage.setItem("user",usersession)
-							// sessionStorage.setItem("isLogin",true)
-							// self.$parent.$refs.head.session = {
-							// 	nickname:nickname,
-          		// 	avatarimg:avatarimg
-							// }
-							// self.$parent.creatToast("登陆成功!")
-							// self.login.isLogin = true
 							self.setSession(snap)
+							self.$parent.$refs.head.getUser()
 							setTimeout(() => {
-						        self.login.show = false
+					        self.login.show = false
 						  }, 1500)
 						}else{
 							self.$parent.creatToast("密码错误,请重新输入!")

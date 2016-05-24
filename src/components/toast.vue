@@ -13,7 +13,6 @@ export default {
                   self.toast.show = false
               },1500)
           }
-
       }
   }
 }

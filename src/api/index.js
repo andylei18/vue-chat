@@ -6,8 +6,7 @@ const LATENCY = 16
 //获取用户列表信息
 export function getAllMessages (cb) {
   setTimeout(() => {
-    MessageList.on("child_added",function(snapshot){
-      console.log(snapshot.key().authorName)
+    MessageList.on("value",function(snapshot){
       cb(snapshot)
     })
   }, LATENCY)
@@ -28,5 +27,6 @@ export function createMessage ({ text, thread }, cb) {
   }
   setTimeout(function () {
     cb(message)
+    
   }, LATENCY)
 }
