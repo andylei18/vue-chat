@@ -59,11 +59,11 @@
 				</div>
 			</div>
 		</div>
-
-
 	</div>
 </template>
 <script>
+	import store from '../vuex/store'
+	import { getAllMessages } from '../vuex/actions'
 	//查询野狗服务
 	import { UserList , MessageList } from '../wilddog'
 
@@ -96,9 +96,9 @@
 	  	ckImgEvent (obj){
 	  		this.avatar.forEach(item => {
 	  			item.ck = false
-        })
-        obj.ck = true
-        this.user.avatarimg = obj.url
+	        })
+	        obj.ck = true
+	        this.user.avatarimg = obj.url
 	  	},
 	  	//查询用户名
 	  	getUid (uid){
@@ -111,10 +111,10 @@
 			  			if(item.val().uid===uidValue){
 			  				self.user.isUid = true
 			  			}
-		        })
-					},(errorObject) => {
-					    console.log("The read failed: " + errorObject.code);
-					});
+			        })
+				},(errorObject) => {
+				    console.log("The read failed: " + errorObject.code);
+				});
 	  		}
 	  	},
 	  	//新建用户
@@ -124,12 +124,12 @@
 	  		const upwd = this.user.upwd.trim()
 	  		const timestamp = Date.now()
   			const timeid = timestamp
-				const messageid = 'm' + timestamp
+			const messageid = 'm' + timestamp
   			const isUid = this.user.isUid
 
   			if(!isUid ){
 
-					if(uid.length>0&&uid.length<6){
+				if(uid.length>0&&uid.length<6){
 			  			return false
 			  	}
 		  		if(nickname.length==0){
@@ -138,80 +138,80 @@
 		  		if(uid.length>0&&uid.length<6){
 		  			return false
 		  		}
-					//插入用户列表
+				//插入用户列表
 		  		UserList.push({
-					    uid:this.user.uid,
+				    uid:this.user.uid,
 			      	nickname:this.user.nickname,
 			      	upwd:this.user.upwd,
 			      	avatarimg:this.user.avatarimg,
 			      	crtime:timeid
-					})
-					const usersession = {
-						uid:this.user.uid,
-						nickname:this.user.nickname,
-						upwd:this.user.upwd,
-						avatarimg:this.user.avatarimg,
-						crtime:timeid
-					}
-					//插入消息列表
-					MessageList.push({
-					    threadID:this.user.uid,
-			      	authorName:this.user.nickname,
-							id: messageid,
-					    threadName: '测试',
-					    text: '',
-					    timestamp: timeid
-					})
-					this.getUid(uid)
-					this.setSession(usersession)
-		  		this.$parent.creatToast("注册成功!")
-					this.$parent.login.isLogin = true
-					this.login.show = false
+				})
+				const usersession = {
+					uid:this.user.uid,
+					nickname:this.user.nickname,
+					upwd:this.user.upwd,
+					avatarimg:this.user.avatarimg,
+					crtime:timeid
+				}
+				//插入消息列表
+				MessageList.push({
+				    threadID:this.user.uid,
+		      		authorName:this.user.nickname,
+					id: messageid,
+				    threadName: '测试',
+				    text: '',
+				    timestamp: timeid
+				})
+				getAllMessages(store)
+				this.getUid(uid)
+				this.setSession(usersession)
+	  			this.$parent.creatToast("注册成功!")
+				this.$parent.login.isLogin = true
+				this.login.show = false
   			}
 	  	},
 	  	//登陆
 	  	loginEvent (){
-				const self = this
-				let uid = self.user.uid.trim()
+			const self = this
+			let uid = self.user.uid.trim()
 	  		let upwd = self.user.upwd.trim()
-
-				UserList.orderByChild('uid').equalTo(uid).once("value",function(snapshot){
+			UserList.orderByChild('uid').equalTo(uid).once("value",function(snapshot){
 			    snapshot.forEach((snap) => {
-					  snap = snap.val()
-						const userid = 	snap.uid
-						const userpwd = snap.upwd
-						const nickname = snap.nickname
-						const avatarimg = snap.avatarimg
-						if(userid==uid&&userpwd==upwd){
-							self.setSession(snap)
-							self.$parent.$refs.head.getUser()
-							setTimeout(() => {
+				    snap = snap.val()
+					const userid = 	snap.uid
+					const userpwd = snap.upwd
+					const nickname = snap.nickname
+					const avatarimg = snap.avatarimg
+					if(userid==uid&&userpwd==upwd){
+						self.setSession(snap)
+						self.$parent.$refs.head.getUser()
+						setTimeout(() => {
 					        self.login.show = false
-						  }, 1500)
-						}else{
-							self.$parent.creatToast("密码错误,请重新输入!")
-							return false
-						}
+				  		}, 1500)
+					}else{
+						self.$parent.creatToast("密码错误,请重新输入!")
+						return false
+					}
 			    })
 
-			  },(errorObject) => {
-				    console.log("The read failed: " + errorObject.code)
-				})
+		  	},(errorObject) => {
+			    console.log("The read failed: " + errorObject.code)
+			})
 	  	},
-			//存到本地
-			setSession (obj){
-				const usersession = JSON.stringify(obj)
-				const nickname = this.user.nickname.trim()
-				const avatarimg = this.user.avatarimg
-				sessionStorage.setItem("user",usersession)
-				sessionStorage.setItem("isLogin",true)
-				this.$parent.$refs.head.session = {
-					nickname:nickname,
-					avatarimg:avatarimg
-				}
-				this.$parent.creatToast("登陆成功!")
-				this.login.isLogin = true
+		//存到本地
+		setSession (obj){
+			const usersession = JSON.stringify(obj)
+			const nickname = this.user.nickname.trim()
+			const avatarimg = this.user.avatarimg
+			sessionStorage.setItem("user",usersession)
+			sessionStorage.setItem("isLogin",true)
+			this.$parent.$refs.head.session = {
+				nickname:nickname,
+				avatarimg:avatarimg
 			}
+			this.$parent.creatToast("登陆成功!")
+			this.login.isLogin = true
+		}
 	  }
 	}
 

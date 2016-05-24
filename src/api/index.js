@@ -7,8 +7,12 @@ const LATENCY = 16
 const getUserMessage = () => {
   MessageList.orderByChild('threadID').equalTo(uid).once("value",function(messages){
     messages.forEach(message => {
-      message = message.val()
-      console.log(message.id)
+      const msg = message.val()
+      console.log(msg.msglist)
+      //如果没有消息列表，则此用户没有聊天记录
+      if(msg.msglist==undefined){
+        
+      }
     })
   })
 }
@@ -32,7 +36,7 @@ export function createMessage ({ text, thread }, cb) {
     timestamp,
     threadID: thread.id,
     threadName: thread.name,
-    authorName: usersession.nickname
+    //authorName: usersession.nickname
   }
   setTimeout(function () {
     //cb(message)
