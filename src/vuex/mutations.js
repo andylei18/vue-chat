@@ -7,15 +7,15 @@ export default {
 
     messages.forEach((msg) => {
       msg = msg.val()
-      if (!state.threads[msg.uid]) {
-        createThread(state, msg.uid, msg.nickname)
+      if (!state.threads[msg.threadID]) {
+        createThread(state, msg.threadID, msg.authorName)
       }
       if (!latestMessage || msg.crtime > latestMessage.crtime) {
         latestMessage = msg
       }
       //addMessage(state, msg)
     })
-    setCurrentThread(state, latestMessage.uid)
+    setCurrentThread(state, latestMessage.threadID)
   },
 
   [types.RECEIVE_MESSAGE] (state, message) {
@@ -36,21 +36,17 @@ function createThread (state, id, name) {
   })
 }
 
-function addMessage (state, msg) {
-  //add a `isRead` field before adding the message
-  msg.isRead = msg.threadID === state.currentThreadID
-  // add it to the thread it belongs to
-  const thread = state.threads[msg.threadID]
-  if (!thread.messages.some(id => id === msg.id)) {
-    thread.messages.push(msg.id)
-    thread.lastMessage = msg
+function addMessage (state, message) {
+  message.isRead = message.threadID === state.currentThreadID
+  const thread = state.threads[message.threadID]
+  if (!thread.messages.some(id => id === message.id)) {
+    thread.messages.push(message.id)
+    thread.lastMessage = message
   }
-  // add it to the messages map
-  set(state.messages, msg.id, msg)
+  set(state.messages, message.id, message)
 }
 
 function setCurrentThread (state, id) {
   state.currentThreadID = id
-  // mark thread as read
   //state.threads[id].lastMessage.isRead = true
 }

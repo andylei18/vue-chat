@@ -27,6 +27,9 @@ export default new Vuex.Store({
     currentThreadID: null,
     threads:{
 
+    },
+    messages:{
+      
     }
   },
   mutations,

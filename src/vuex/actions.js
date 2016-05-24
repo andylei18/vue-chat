@@ -15,8 +15,15 @@ export const getAllMessages = ({ dispatch }) => {
     dispatch(types.RECEIVE_ALL, messages)
   })
 }
+
 //切换用户
 export const switchThread = ({ dispatch }, id) => {
-  console.log(id)
   dispatch(types.SWITCH_THREAD, id)
+}
+
+//推送消息
+export const sendMessage = ({ dispatch }, text, thread) => {
+  api.createMessage({ text, thread }, message => {
+    dispatch(types.RECEIVE_MESSAGE, message)
+  })
 }

@@ -65,7 +65,7 @@
 </template>
 <script>
 	//查询野狗服务
-	import { UserList } from '../wilddog'
+	import { UserList , MessageList } from '../wilddog'
 
 	export default {
 	  data () {
@@ -86,22 +86,19 @@
 	      	isUid:true,
 	      	nickname:"",
 	      	upwd:"",
-	      	avatarid:""
+	      	avatarimg:""
 	      }
 	    }
 	  },
 	  props:['login'],
-	  components:{
-
-	  },
 	  methods:{
 	  	//头像选择
 	  	ckImgEvent (obj){
 	  		this.avatar.forEach(item => {
 	  			item.ck = false
-            })
-            obj.ck = true
-            this.user.avatarid = obj.id
+        })
+        obj.ck = true
+        this.user.avatarimg = obj.url
 	  	},
 	  	//查询用户名
 	  	getUid (uid){
@@ -110,11 +107,11 @@
 	  		if(uidValue!=""&&uidValue.length==6){
 	  			self.user.isUid = false
 	  			UserList.once("value", (snapshot) =>{
-				    snapshot.forEach(item => {
-			  			if(item.val().uid===uidValue){
-			  				self.user.isUid = true
-			  			}
-		        })
+			    snapshot.forEach(item => {
+		  			if(item.val().uid===uidValue){
+		  				self.user.isUid = true
+		  			}
+	        })
 				},(errorObject) => {
 				    console.log("The read failed: " + errorObject.code);
 				});
@@ -131,25 +128,41 @@
 
   			if(!isUid ){
 
-				if(uid.length>0&&uid.length<6){
-		  			return false
-		  		}
+					if(uid.length>0&&uid.length<6){
+			  			return false
+			  	}
 		  		if(nickname.length==0){
 		  			return false
 		  		}
 		  		if(uid.length>0&&uid.length<6){
 		  			return false
 		  		}
-
+					//插入用户列表
 		  		UserList.push({
-				    uid:this.user.uid,
+					    uid:this.user.uid,
 			      	nickname:this.user.nickname,
 			      	upwd:this.user.upwd,
-			      	avatarid:this.user.avatarid,
+			      	avatarimg:this.user.avatarimg,
 			      	crtime:timeid
-				});
-				this.getUid(uid)
+					})
+					const usersession = {
+						uid:this.user.uid,
+						nickname:this.user.nickname,
+						upwd:this.user.upwd,
+						avatarimg:this.user.avatarimg,
+						crtime:timeid
+					}
+					//插入消息列表
+					MessageList.push({
+					    threadID:this.user.uid,
+			      	authorName:this.user.nickname,
+							crtime:timeid
+					})
+					this.getUid(uid)
+					this.setSession(usersession)
 		  		this.$parent.creatToast("注册成功!")
+					this.$parent.login.isLogin = true
+					this.login.show = false
   			}
 	  	},
 	  	//登陆
@@ -164,17 +177,18 @@
 						const userid = 	snap.uid
 						const userpwd = snap.upwd
 						const nickname = snap.nickname
-						const avatarid = snap.avatarid
+						const avatarimg = snap.avatarimg
 						if(userid==uid&&userpwd==upwd){
-							const usersession = JSON.stringify(snap)
-							sessionStorage.setItem("user",usersession)
-							sessionStorage.setItem("isLogin",true)
-							self.$parent.$refs.head.session = {
-								nickname:nickname,
-		            			avatarimg:'http://o7kxl993s.bkt.clouddn.com/'+ avatarid +'.jpg'
-							}
-							self.$parent.creatToast("登陆成功!")
-							self.login.isLogin = true
+
+							// sessionStorage.setItem("user",usersession)
+							// sessionStorage.setItem("isLogin",true)
+							// self.$parent.$refs.head.session = {
+							// 	nickname:nickname,
+          		// 	avatarimg:avatarimg
+							// }
+							// self.$parent.creatToast("登陆成功!")
+							// self.login.isLogin = true
+							self.setSession(snap)
 							setTimeout(() => {
 						        self.login.show = false
 						  }, 1500)
@@ -188,6 +202,20 @@
 				    console.log("The read failed: " + errorObject.code)
 				})
 	  	},
+			//存到本地
+			setSession (obj){
+				const usersession = JSON.stringify(obj)
+				const nickname = this.user.nickname.trim()
+				const avatarimg = this.user.avatarimg
+				sessionStorage.setItem("user",usersession)
+				sessionStorage.setItem("isLogin",true)
+				this.$parent.$refs.head.session = {
+					nickname:nickname,
+					avatarimg:avatarimg
+				}
+				this.$parent.creatToast("登陆成功!")
+				this.login.isLogin = true
+			}
 	  }
 	}
 

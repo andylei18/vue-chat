@@ -2,38 +2,47 @@
   <div class="message-section">
     <h3 class="message-thread-heading"></h3>
     <ul class="message-list" v-el:list>
-      <!-- <message
+      <message-module
         v-for="message in messages | orderBy 'timestamp'"
         track-by="id"
         :message="message">
-      </message> -->
+      </message-module>
     </ul>
     <textarea class="message-composer" @keyup.enter="trySendMessage"></textarea>
   </div>
 </template>
 <script>
-  //加载公用小组件
-  export default {
-      data () {
-        return {
+  import MessageModule from './message.vue'
+  import { sendMessage } from '../vuex/actions'
+  import { currentThread, currentMessages } from '../vuex/getters'
 
+  export default {
+      components:{ MessageModule },
+      vuex: {
+        getters: {
+          thread: currentThread,
+          messages: currentMessages
+        },
+        actions: {
+          sendMessage
         }
       },
-      components:{
-
+      watch: {
+        'thread.lastMessage': function () {
+          this.$nextTick(() => {
+            const ul = this.$els.list
+            ul.scrollTop = ul.scrollHeight
+          })
+        }
       },
-      beforeCompile (){
-
-      },
-      ready (){
-        
-      },
-      methods:{
-          //发送消息
-          trySendMessage (){
-
+      methods: {
+        trySendMessage (e) {
+          const text = e.target.value
+          if (text.trim()) {
+            this.sendMessage(text, this.thread)
+            e.target.value = ''
           }
-
+        }
       }
   }
 </script>

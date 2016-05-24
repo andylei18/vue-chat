@@ -41,7 +41,7 @@
 	    }
 	  },
 	  components:{
-	  	
+
 	  },
 	  compiled (){
 	  	this.getUser()
@@ -59,7 +59,7 @@
 	  		const update = () =>{
 	  			const userinsession = JSON.parse(sessionStorage.getItem("user"))
 				this.session.nickname = userinsession.nickname
-	  			this.session.avatarimg = 'http://o7kxl993s.bkt.clouddn.com/'+ userinsession.avatarid +'.jpg'
+	  			this.session.avatarimg = userinsession.avatarimg
 	  			this.$parent.login.isLogin = true
 	  		}
 	  		//已登陆状态
@@ -80,7 +80,7 @@
 		      	isUid:true,
 		      	nickname:"",
 		      	upwd:"",
-		      	avatarid:""	  
+		      	avatarimg:""
 	      	}
 			this.$parent.login.isLogin = false
 			sessionStorage.setItem("isLogin",false)
@@ -94,19 +94,19 @@
 	}
 </script>
 <style>
-	.actions-active:after, 
-	.actions-active:before, 
-	.categories:after, 
-	.categories:before, 
-	.clearfix:after, 
-	.clearfix:before, 
-	.entry-container:after, 
-	.entry-container:before, 
-	.users-list-item:after, 
+	.actions-active:after,
+	.actions-active:before,
+	.categories:after,
+	.categories:before,
+	.clearfix:after,
+	.clearfix:before,
+	.entry-container:after,
+	.entry-container:before,
+	.users-list-item:after,
 	.users-list-item:before,
-    header:after, 
-    header:before, 
-    nav:after, 
+    header:after,
+    header:before,
+    nav:after,
     nav:before {
 	    content: " ";
 	    display: table;
