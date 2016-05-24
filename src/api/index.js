@@ -1,7 +1,17 @@
 //查询野狗服务
 import { MessageList} from '../wilddog'
-
+const usersession =JSON.parse(sessionStorage.getItem("user"))
+const uid = usersession.uid
 const LATENCY = 16
+
+const getUserMessage = () => {
+  MessageList.orderByChild('threadID').equalTo(uid).once("value",function(messages){
+    messages.forEach(message => {
+      message = message.val()
+      console.log(message.id)
+    })
+  })
+}
 
 //获取用户列表信息
 export function getAllMessages (cb) {
@@ -16,7 +26,6 @@ export function getAllMessages (cb) {
 export function createMessage ({ text, thread }, cb) {
   const timestamp = Date.now()
   const id = 'wx_' + timestamp
-  const usersession =JSON.parse(sessionStorage.getItem("user"))
   const message = {
     id,
     text,
@@ -26,7 +35,7 @@ export function createMessage ({ text, thread }, cb) {
     authorName: usersession.nickname
   }
   setTimeout(function () {
-    cb(message)
-    
+    //cb(message)
+    getUserMessage()
   }, LATENCY)
 }

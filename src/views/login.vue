@@ -107,14 +107,14 @@
 	  		if(uidValue!=""&&uidValue.length==6){
 	  			self.user.isUid = false
 	  			UserList.once("value", (snapshot) =>{
-			    snapshot.forEach(item => {
-		  			if(item.val().uid===uidValue){
-		  				self.user.isUid = true
-		  			}
-	        })
-				},(errorObject) => {
-				    console.log("The read failed: " + errorObject.code);
-				});
+				    snapshot.forEach(item => {
+			  			if(item.val().uid===uidValue){
+			  				self.user.isUid = true
+			  			}
+		        })
+					},(errorObject) => {
+					    console.log("The read failed: " + errorObject.code);
+					});
 	  		}
 	  	},
 	  	//新建用户
