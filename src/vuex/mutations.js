@@ -4,6 +4,8 @@ import * as types from './mutation-types'
 export default {
   [types.RECEIVE_ALL] (state, messages) {
     let latestMessage
+    console.log(state)
+    console.log(messages)
     messages.forEach(message => {
       // create new thread if the thread doesn't exist
       if (!state.threads[message.threadID]) {

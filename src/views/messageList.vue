@@ -16,24 +16,24 @@
   export default {
       data () {
         return {
-          
+
         }
       },
       components:{
-       
+
       },
       beforeCompile (){
 
       },
       ready (){
-
+        
       },
       methods:{
           //发送消息
           trySendMessage (){
 
           }
-        
+
       }
   }
 </script>

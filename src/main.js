@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './views/app.vue'
 import Vuex from 'vuex'
 import store from './vuex/store'
+import { getAllMessages } from './vuex/actions'
 
 Vue.use(Vuex)
 
@@ -16,3 +17,5 @@ new Vue({
   store,
   components: { App }
 })
+
+getAllMessages(store)

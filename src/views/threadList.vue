@@ -15,7 +15,7 @@
   </div>
 </template>
 <script>
-  
+
   import Thread from './thread.vue'
   import { showToast } from '../vuex/actions'
 
@@ -30,7 +30,7 @@
         }
       },
       ready (){
-        this.showToast('11111111111111111111111')
+        //this.showToast('11111111111111111111111')
       }
   }
 </script>

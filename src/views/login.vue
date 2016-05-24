@@ -5,62 +5,62 @@
 			<div class="inner">
 				<div id="login-form">
 					<p class="input-relative">
-						<input type="text" name="uid" placeholder="用户名（6位）" maxlength="6" required="required" 
-							v-model="user.uid" 
+						<input type="text" name="uid" placeholder="用户名（6位）" maxlength="6" required="required"
+							v-model="user.uid"
 							@keyup="getUid(user.uid)">
-						<span class="input-alert tag true fade-transition" 
-							v-show="user.uid.trim().length==6" 
-							v-text="user.isUid?'用户名已存在':'用户名可注册'" 
+						<span class="input-alert tag true fade-transition"
+							v-show="user.uid.trim().length==6"
+							v-text="user.isUid?'用户名已存在':'用户名可注册'"
 							transition="showfade">
 						</span>
 					</p>
-					<p class="fade-right input-relative fade-right-transition" 
+					<p class="fade-right input-relative fade-right-transition"
 						v-show="user.uid.trim().length==6&&!user.isUid">
-						<input type="text" name="nickname" placeholder="昵称" required="required" 
+						<input type="text" name="nickname" placeholder="昵称" required="required"
 							v-model="user.nickname">
-						<span class="input-alert tag true fade-transition" 
-							v-show="user.nickname.trim().length==0" 
+						<span class="input-alert tag true fade-transition"
+							v-show="user.nickname.trim().length==0"
 							v-text="user.nickname.trim().length==0?'请正确填写此字段':''"
 							transition="showfade">
 						</span>
 					</p>
-					<p class="fade-right input-relative fade-right-transition" 
-						v-show="user.uid.trim().length==6" 
+					<p class="fade-right input-relative fade-right-transition"
+						v-show="user.uid.trim().length==6"
 						transition="showfade">
 						<input type="text" style="display:none">
-						<input type="password" name="upwd" placeholder="密码（不少于6位）" autocomplete="off" required="required" minlength="6" 
+						<input type="password" name="upwd" placeholder="密码（不少于6位）" autocomplete="off" required="required" minlength="6"
 							v-model="user.upwd">
-						<span class="input-alert tag true fade-transition" 
-							v-show="user.upwd.trim().length<6" 
+						<span class="input-alert tag true fade-transition"
+							v-show="user.upwd.trim().length<6"
 							v-text="user.upwd.trim().length<6?'请正确填写此字段':''">
 						</span>
 					</p>
-					<div class="fade-right input-relative fade-right-transition avatar-list" 
-						v-show="user.uid.trim().length==6&&!user.isUid" 
+					<div class="fade-right input-relative fade-right-transition avatar-list"
+						v-show="user.uid.trim().length==6&&!user.isUid"
 						transition="showfade">
-						<img 
-						v-for="item in avatar" class="avatar-item" 
-						:src="item.url" 
-						:id="item.id" 
+						<img
+						v-for="item in avatar" class="avatar-item"
+						:src="item.url"
+						:id="item.id"
 						@click="ckImgEvent(item)"
 						:class="item.ck?'active':''">
 					</div>
-					<p class="text-right fade-right-transition" 
+					<p class="text-right fade-right-transition"
 						v-show="user.uid.trim().length==6">
 						<input type="button" value="注册" class="small"
-							@click="creatUser" 
-							:disabled="this.user.avatarid==''" 
-							v-show="!user.isUid" 
-							transition="showfade"> 
+							@click="creatUser"
+							:disabled="this.user.avatarid==''"
+							v-show="!user.isUid"
+							transition="showfade">
 						<input type="button" value="登陆" class="small"
-							@click="loginEvent" 
-							:disabled="!this.user.isUid"> 
+							@click="loginEvent"
+							:disabled="!this.user.isUid">
 					</p>
 				</div>
 			</div>
 		</div>
 
-		
+
 	</div>
 </template>
 <script>
@@ -86,13 +86,13 @@
 	      	isUid:true,
 	      	nickname:"",
 	      	upwd:"",
-	      	avatarid:""	      
+	      	avatarid:""
 	      }
 	    }
 	  },
 	  props:['login'],
 	  components:{
-	  	
+
 	  },
 	  methods:{
 	  	//头像选择
@@ -114,7 +114,7 @@
 			  			if(item.val().uid===uidValue){
 			  				self.user.isUid = true
 			  			}
-		            })
+		        })
 				},(errorObject) => {
 				    console.log("The read failed: " + errorObject.code);
 				});
@@ -127,7 +127,7 @@
 	  		const upwd = this.user.upwd.trim()
 	  		const timestamp = Date.now()
   			const timeid = 'wx_' + timestamp
-  			const isUid = this.user.isUid 
+  			const isUid = this.user.isUid
 
   			if(!isUid ){
 
@@ -154,37 +154,40 @@
 	  	},
 	  	//登陆
 	  	loginEvent (){
-			let uid = this.user.uid.trim()
-	  		let upwd = this.user.upwd.trim()
+				const self = this
+				let uid = self.user.uid.trim()
+	  		let upwd = self.user.upwd.trim()
 
-			UserList.orderByChild("uid").limitToFirst(1).on("child_added",(snapshot) =>{
-				const userid = 	snapshot.val().uid
-				const userpwd = snapshot.val().upwd
-				const nickname = snapshot.val().nickname
-				const avatarid = snapshot.val().avatarid
-				if(userid==uid&&userpwd==upwd){
-					const usersession = JSON.stringify(snapshot.val())
-					sessionStorage.setItem("user",usersession)
-					sessionStorage.setItem("isLogin",true)
-					this.$parent.$refs.head.session = {
-						nickname:nickname,
-            			avatarimg:'http://o7kxl993s.bkt.clouddn.com/'+ avatarid +'.jpg'
-					}
-					this.$parent.creatToast("登陆成功!")
-					this.login.isLogin = true
-					setTimeout(() => {
-				        this.login.show = false
-				    }, 1500)
-				}else{
-					this.$parent.creatToast("密码错误,请重新输入!")
-					return false
-				}
-			},(errorObject) => {
-			    console.log("The read failed: " + errorObject.code);
-			});
+				UserList.orderByChild('uid').equalTo(uid).once("value",function(snapshot){
+			    snapshot.forEach((snap) => {
+					  snap = snap.val()
+						const userid = 	snap.uid
+						const userpwd = snap.upwd
+						const nickname = snap.nickname
+						const avatarid = snap.avatarid
+						if(userid==uid&&userpwd==upwd){
+							const usersession = JSON.stringify(snap)
+							sessionStorage.setItem("user",usersession)
+							sessionStorage.setItem("isLogin",true)
+							self.$parent.$refs.head.session = {
+								nickname:nickname,
+		            			avatarimg:'http://o7kxl993s.bkt.clouddn.com/'+ avatarid +'.jpg'
+							}
+							self.$parent.creatToast("登陆成功!")
+							self.login.isLogin = true
+							setTimeout(() => {
+						        self.login.show = false
+						  }, 1500)
+						}else{
+							self.$parent.creatToast("密码错误,请重新输入!")
+							return false
+						}
+			    })
+
+			  },(errorObject) => {
+				    console.log("The read failed: " + errorObject.code)
+				})
 	  	},
-	  	
-
 	  }
 	}
 
