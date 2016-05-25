@@ -1,5 +1,5 @@
 import Wilddog from 'wilddog'
-const AppId = 'vuechat118'
+const AppId = 'wxuser0'
 
 const UserDB = new Wilddog('https://' + AppId + '.wilddogio.com/')
 const UserList = UserDB.child('userlist')

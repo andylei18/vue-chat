@@ -31,7 +31,6 @@
       },
       ready (){
         //this.showToast('11111111111111111111111')
-        //console.log(this.threads)
       },
       computed: {
         unreadCount () {

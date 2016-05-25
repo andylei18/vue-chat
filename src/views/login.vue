@@ -62,8 +62,8 @@
 	</div>
 </template>
 <script>
-	//import store from '../vuex/store'
-	//import { getAllMessages } from '../vuex/actions'
+	import store from '../vuex/store'
+	import { getAllMessages } from '../vuex/actions'
 	//查询野狗服务
 	import { UserList , MessageList } from '../wilddog'
 
@@ -124,8 +124,8 @@
 	  		const upwd = this.user.upwd.trim()
 	  		const timestamp = Date.now()
   			const timeid = timestamp
+				const messageid = 'm' + timestamp
   			const isUid = this.user.isUid
-				let threadID
 
   			if(!isUid ){
 
@@ -138,7 +138,6 @@
 		  		if(uid.length>0&&uid.length<6){
 		  			return false
 		  		}
-
 					//插入用户列表
 		  		UserList.push({
 				    uid:this.user.uid,
@@ -155,27 +154,13 @@
 						crtime:timeid
 					}
 					//插入消息列表
-					// MessageList.push({
-					// 		authorID:this.user.uid,//当前用户ID
-		      // 		authorName:this.user.nickname,//当前用户昵称
-		      // 		authorImg:this.user.avatarimg,//当前用户头像
-					//     timestamp: timeid//插入时间
-					// })
-					UserList.limitToFirst(1).on("child_added",function(snapshot){
-						threadID = snapshot.val().uid
-						console.log(threadID)
-					})
-
 					MessageList.push({
-						id:timeid,
-				    text:"test",
-				    timestamp:threadID,
-				    threadID:threadID,
-				    threadName: "hhhhhhhhhhhhhhhhh",
-				    authorName: this.user.uid,
+							authorID:this.user.uid,//当前用户ID
+		      		authorName:this.user.nickname,//当前用户昵称
+		      		authorImg:this.user.avatarimg,//当前用户头像
+					    timestamp: timeid//插入时间
 					})
-
-					//getAllMessages(store)
+					getAllMessages(store)
 					this.getUid(uid)
 					this.setSession(usersession)
 	  			this.$parent.creatToast("注册成功!")
