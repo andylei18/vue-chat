@@ -4,7 +4,7 @@
 			<ul class="actions">
 				<li class="action true">
 					<img src="../assets/images/logo.png" class="inline home-logo hide-when-not-large">
-					<span class="hide-when-large">andylei18</span>
+					<span class="hide-when-large">Qu聊</span>
 				</li>
 			</ul>
 			<ul class="actions secondary">
