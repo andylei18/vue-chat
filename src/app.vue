@@ -5,6 +5,8 @@
     <nav-bar></nav-bar>
 
     <router-view></router-view>
+
+    <footer-bar></footer-bar>
   </div>
 
 </template>
@@ -15,12 +17,13 @@
   import store from './vuex/store'
 
   import NavBar from './components/navBar'
-
+  import FooterBar from './components/footer'
 
   export default {
     store,
     components :{
-      NavBar
+      NavBar,
+      FooterBar
     }
   }
 </script>
