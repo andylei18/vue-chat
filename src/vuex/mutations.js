@@ -4,17 +4,19 @@ import * as types from './mutation-types'
 export default {
   [types.RECEIVE_ALL] (state, messages) {
     let latestMessage
-
-    messages.forEach((msg) => {
-      msg = msg.val()
-      if (!state.threads[msg.threadID]) {
-        createThread(state, msg.threadID, msg.authorName , msg.authorImg)
+    messages.forEach(message => {
+      // create new thread if the thread doesn't exist
+      if (!state.threads[message.threadID]) {
+        createThread(state, message.threadID, message.threadName)
       }
-      if (!latestMessage || msg.crtime > latestMessage.crtime) {
-        latestMessage = msg
+      // mark the latest message
+      if (!latestMessage || message.timestamp > latestMessage.timestamp) {
+        latestMessage = message
       }
-      //addMessage(state, msg)
+      // add message
+      addMessage(state, message)
     })
+    // set initial thread to the one with the latest message
     setCurrentThread(state, latestMessage.threadID)
   },
 
@@ -27,27 +29,31 @@ export default {
   }
 }
 
-function createThread (state, id, name , img) {
+function createThread (state, id, name) {
   set(state.threads, id, {
     id,
     name,
-    img,
     messages: [],
     lastMessage: null
   })
 }
 
 function addMessage (state, message) {
+  // add a `isRead` field before adding the message
   message.isRead = message.threadID === state.currentThreadID
+  // add it to the thread it belongs to
   const thread = state.threads[message.threadID]
+  console.log(thread)
   if (!thread.messages.some(id => id === message.id)) {
     thread.messages.push(message.id)
     thread.lastMessage = message
   }
+  // add it to the messages map
   set(state.messages, message.id, message)
 }
 
 function setCurrentThread (state, id) {
   state.currentThreadID = id
-  //state.threads[id].lastMessage.isRead = true
+  // mark thread as read
+  state.threads[id].lastMessage.isRead = true
 }

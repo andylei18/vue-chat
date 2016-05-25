@@ -1,7 +1,7 @@
 //查询野狗服务
 import { MessageList} from '../wilddog'
 const usersession =JSON.parse(sessionStorage.getItem("user"))
-const uid = usersession.uid
+//const uid = usersession.uid
 const LATENCY = 16
 
 const getUserMessage = () => {
@@ -11,7 +11,7 @@ const getUserMessage = () => {
       console.log(msg.msglist)
       //如果没有消息列表，则此用户没有聊天记录
       if(msg.msglist==undefined){
-        
+
       }
     })
   })
