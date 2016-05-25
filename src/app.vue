@@ -1,10 +1,9 @@
 <template>
 
   <div id="app">
-    <div class="navbar-fixed">
 
+    <nav-bar></nav-bar>
 
-    </div>
     <router-view></router-view>
   </div>
 
@@ -14,7 +13,14 @@
   import "materialize-css/bin/materialize.css"
 
   import store from './vuex/store'
+
+  import NavBar from './components/navBar'
+
+
   export default {
-    store
+    store,
+    components :{
+      NavBar
+    }
   }
 </script>
