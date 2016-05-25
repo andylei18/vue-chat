@@ -4,18 +4,18 @@ import * as types from './mutation-types'
 export default {
   [types.RECEIVE_ALL] (state, messages) {
     let latestMessage
-    messages.forEach( msg => {
 
-      const newget = msg.val()
-      if (!state.threads[newget.authorID]) {
-        createThread(state, newget.authorID, newget.authorName , newget.authorImg)
+    messages.forEach((msg) => {
+      msg = msg.val()
+      if (!state.threads[msg.threadID]) {
+        createThread(state, msg.threadID, msg.authorName , msg.authorImg)
       }
-      if (!latestMessage || newget.timestamp > latestMessage.timestamp) {
-        latestMessage = newget
+      if (!latestMessage || msg.crtime > latestMessage.crtime) {
+        latestMessage = msg
       }
-      //addMessage(state, newget)
+      //addMessage(state, msg)
     })
-    setCurrentThread(state, latestMessage.authorID)
+    setCurrentThread(state, latestMessage.threadID)
   },
 
   [types.RECEIVE_MESSAGE] (state, message) {

@@ -147,14 +147,13 @@
 	}
 	header .action.true{
 		 color: #ff8140;
-		 padding:0.5em;
 	}
 	img.inline {
 	    height: 1.3em;
 	    vertical-align: top;
 	}
 	header .home-logo {
-	    height: 3em;
+	    height: 1.8em;
 	}
 	img.inline+span, span+img.inline {
 	    margin-left: .5em;
