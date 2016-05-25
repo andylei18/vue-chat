@@ -1,10 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import App from './views/app.vue'
-import store from './vuex/store'
-import WildVue from 'wildvue'
-import { getAllMessages } from './vuex/actions'
+import VueRouter from 'vue-router'
+import { sync } from 'vuex-router-sync'
 
+import App from './app'
+import store from './vuex/store'
+import router from './router/index'
+import WildVue from 'wildvue'
+
+Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(WildVue)
 
@@ -14,10 +18,6 @@ Vue.filter('time', timestamp => {
   return new Date(timestamp).toLocaleTimeString()
 })
 
-new Vue({
-  el: 'body',
-  store,
-  components: { App }
-})
+sync(store, router)
 
-getAllMessages(store)
+router.start(App, 'app')

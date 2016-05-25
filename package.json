@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "vue": "^1.0.21",
-    "babel-runtime": "^6.0.0"
+    "babel-runtime": "^6.0.0",
+    "wildvue": "^1.0.4",
+    "wilddog": "^0.6.2",
+    "materialize-css": "^0.97.6"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -33,7 +36,7 @@
     "shelljs": "^0.6.0",
     "url-loader": "^0.5.7",
 
-    
+
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^8.3.0",
@@ -43,11 +46,6 @@
     "vue-router": "^0.7.13",
     "vuex-router-sync": "^1.0.0",
 
-    "wildvue": "^1.0.4",
-    "wilddog": "^0.6.2",
-
-    "canvas-shapes": "^1.1.5",
-    
 
     "webpack": "^1.12.2",
     "webpack-dev-middleware": "^1.4.0",
