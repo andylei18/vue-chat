@@ -4,18 +4,16 @@ import * as types from './mutation-types'
 export default {
   [types.RECEIVE_ALL] (state, messages) {
     let latestMessage
-    messages.forEach( msg => {
-
-      const newget = msg.val()
-      if (!state.threads[newget.authorID]) {
-        createThread(state, newget.authorID, newget.authorName , newget.authorImg)
+    messages.forEach(message => {
+      if (!state.threads[message.threadID]) {
+        createThread(state, message.threadID, message.threadName)
       }
-      if (!latestMessage || newget.timestamp > latestMessage.timestamp) {
-        latestMessage = newget
+      if (!latestMessage || message.timestamp > latestMessage.timestamp) {
+        latestMessage = message
       }
-      //addMessage(state, newget)
+      addMessage(state, message)
     })
-    setCurrentThread(state, latestMessage.authorID)
+    setCurrentThread(state, latestMessage.threadID)
   },
 
   [types.RECEIVE_MESSAGE] (state, message) {
@@ -27,11 +25,10 @@ export default {
   }
 }
 
-function createThread (state, id, name , img) {
+function createThread (state, id, name ) {
   set(state.threads, id, {
     id,
     name,
-    img,
     messages: [],
     lastMessage: null
   })
@@ -49,5 +46,5 @@ function addMessage (state, message) {
 
 function setCurrentThread (state, id) {
   state.currentThreadID = id
-  //state.threads[id].lastMessage.isRead = true
+  state.threads[id].lastMessage.isRead = true
 }

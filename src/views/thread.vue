@@ -4,7 +4,6 @@
     :class="{ active: thread.id === currentThreadID }"
     @click="switchThread(thread.id)">
     <h5 class="thread-name">{{ thread.name }}</h5>
-    <img class="thread-img" :src="thread.img">
     <div class="thread-time">
       <!-- {{ thread.lastMessage.timestamp | time }} -->
     </div>
