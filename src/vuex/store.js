@@ -18,6 +18,7 @@ const mutations = {
   ['RECEIVE_ALL'] (state, messages) {
     let latestMessage
     messages.forEach(message => {
+      message = message.val()
       if (!state.threads[message.threadID]) {
         createThread(state, message.threadID, message.threadName)
       }
