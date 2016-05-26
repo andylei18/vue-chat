@@ -18,7 +18,7 @@
   import { currentThread, currentMessages } from '../../vuex/getters'
 
   export default {
-      components:{ MessageModule },
+      components: { MessageModule },
       vuex: {
         getters: {
           thread: currentThread,

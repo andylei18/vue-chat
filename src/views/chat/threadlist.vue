@@ -24,11 +24,6 @@
   import ThreadModule from './thread'//对话列表明细组件
 
   export default {
-    data (){
-      return {
-
-      }
-    },
     components:{ ThreadModule },
     vuex: {
       getters: {

@@ -37,7 +37,6 @@
     comCover
   } from '../components/index'
 
-
   import HeadModule from './head.vue'       //头部组件
   import ModalModule from './login.vue'     //登录注册组件
 
@@ -47,7 +46,7 @@
   export default {
       data () {
         return {
-          login:{
+          login: {
             show:false,
             isLogin:false,
           },
@@ -55,12 +54,12 @@
             message: '',
             show: false
           },
-          cover:{
+          cover: {
             show:false
           }
         }
       },
-      components:{
+      components: {
         HeadModule,ModalModule,MlistModule,TlistModule,
         comToast,comCover
       },
@@ -70,9 +69,9 @@
       ready (){
         this.cover.show = false
       },
-      methods:{
+      methods: {
           //统一toast
-        creatToast (message) {
+        creatToast (message){
           this.toast.message = message
           this.toast.show = true
         },

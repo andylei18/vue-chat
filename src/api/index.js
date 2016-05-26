@@ -1,3 +1,5 @@
+'use strict'
+
 import data from './mock-data'
 const LATENCY = 16
 

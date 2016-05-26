@@ -29,15 +29,15 @@
   import { getAllMessages } from '../../vuex/actions'
 
   export default {
-      components:{
+      components: {
         ThreadlistModule,
         MessagelistModule
       },
-      vuex :{
+      vuex: {
 
       },
       store,
-      route :{
+      route: {
         data (transition){
           getAllMessages(store)
         }

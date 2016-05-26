@@ -20,10 +20,6 @@
 <script>
   //加载vuex store
   import store from './vuex/store'
-  //加载materialize作为公用css
-  import "materialize-css/bin/materialize.css"
-
-
 
   //业务模块组件
   import NavBar from './components/navBar'  //navBar组件
@@ -31,7 +27,7 @@
 
   export default {
     store,
-    components :{
+    components: {
       NavBar,
       //FooterBar
     },
