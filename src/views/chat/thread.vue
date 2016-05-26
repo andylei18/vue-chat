@@ -17,7 +17,7 @@
 
 <script>
 
-  import { switchThread } from '../../vuex/chat/action'
+  import { switchThread } from '../../vuex/actions'
 
   export default {
     props: ['thread'],

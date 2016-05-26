@@ -1,4 +1,4 @@
-import * as api from '../../api'
+import * as api from '../api'
 
 //获取所有信息
 export const getAllMessages = ({ dispatch }) => {

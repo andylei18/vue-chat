@@ -25,8 +25,8 @@
   import MessagelistModule from './messagelist'//消息列表组件
 
   //加载vuex store
-  import store from '../../vuex/chat/store'
-  import { getAllMessages } from '../../vuex/chat/action'
+  import store from '../../vuex/store'
+  import { getAllMessages } from '../../vuex/actions'
 
   export default {
       components:{

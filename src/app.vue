@@ -19,12 +19,12 @@
 
 <script>
   //加载vuex store
-  import store from './vuex/chat/store'
+  import store from './vuex/store'
   //加载materialize作为公用css
   import "materialize-css/bin/materialize.css"
 
 
-  
+
   //业务模块组件
   import NavBar from './components/navBar'  //navBar组件
   //import FooterBar from './components/footer'//footer组件

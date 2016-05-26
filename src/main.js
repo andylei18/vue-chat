@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 import { sync } from 'vuex-router-sync'
 
 import App from './app'
-import store from './vuex/chat/store'
+import store from './vuex/store'
 import router from './router/index'
 import WildVue from 'wildvue'
 //import Wilddog from 'wilddog'
