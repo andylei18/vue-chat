@@ -1,6 +1,3 @@
-/**
- * Created by steven on 16/5/11.
- */
 'use strict';
 
 import {Panel} from './schema';

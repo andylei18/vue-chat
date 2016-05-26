@@ -1,6 +1,3 @@
-/**
- * Created by steven on 16/5/11.
- */
 'use strict';
 
 export default function (ref) {
@@ -36,4 +33,3 @@ export default function (ref) {
     signOut
   };
 }
-

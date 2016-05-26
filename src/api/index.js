@@ -10,7 +10,8 @@ const ref = new Wilddog("https://vuechat118.wilddogio.com/")
 export function getAllMessages (cb) {
   setTimeout(() => {
     //cb(data)
-    ref.on("child_added", (snapshot) =>{
+    ref.child('messages').on("value", (snapshot) =>{
+        console.log(snapshot.val)
         cb(snapshot)
     },(errorObject) => {
         console.log("The read failed: " + errorObject.code)
