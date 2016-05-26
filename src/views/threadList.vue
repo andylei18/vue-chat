@@ -23,6 +23,7 @@
       components:{ Thread },
       vuex: {
         getters: {
+          // 一个状态的 getter 函数，将会把 `store.state.threads` 绑定为 `this.count`
           threads: state => state.threads
         },
         actions: {

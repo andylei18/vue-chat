@@ -1,4 +1,5 @@
 <template>
+
   <footer class="page-footer green darken-1">
     <div class="container">
       <div class="row">
@@ -32,4 +33,5 @@
       </div>
     </div>
   </footer>
+
 </template>

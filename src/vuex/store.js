@@ -28,8 +28,9 @@ export default new Vuex.Store({
     threads:{
 
     },
+    //聊天消息
     messages:{
-      
+
     }
   },
   mutations,
