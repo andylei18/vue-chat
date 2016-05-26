@@ -1,5 +1,5 @@
 <template>
-  <nav class="grey lighten-5" role="navigation">
+  <nav class="white" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><img src="../assets/images/logo.png" style="height:2rem"></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="#">Sign in</a></li>

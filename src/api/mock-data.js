@@ -62,13 +62,5 @@ module.exports = [
     authorName: 'Brian',
     text: '222222222222222',
     timestamp: Date.now() - 29999
-  },
-  {
-    id: '',
-    threadID: '',
-    threadName: '',
-    authorName: '',
-    text: '',
-    timestamp:''
   }
 ]

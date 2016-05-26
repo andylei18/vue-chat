@@ -1,4 +1,5 @@
 export function currentThread (state) {
+  console.log(state)
   return state.currentThreadID
     ? state.threads[state.currentThreadID]
     : {}

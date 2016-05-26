@@ -11,10 +11,11 @@
     <textarea class="message-composer" @keyup.enter="trySendMessage"></textarea>
   </div>
 </template>
+
 <script>
-  import MessageModule from './message.vue'
-  import { sendMessage } from '../vuex/actions'
-  import { currentThread, currentMessages } from '../vuex/getters'
+  import MessageModule from './message'
+  import { sendMessage } from '../../vuex/actions'
+  import { currentThread, currentMessages } from '../../vuex/getters'
 
   export default {
       components:{ MessageModule },

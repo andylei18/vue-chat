@@ -43,7 +43,6 @@ function addMessage (state, message) {
   message.isRead = message.threadID === state.currentThreadID
   // add it to the thread it belongs to
   const thread = state.threads[message.threadID]
-  console.log(thread)
   if (!thread.messages.some(id => id === message.id)) {
     thread.messages.push(message.id)
     thread.lastMessage = message
