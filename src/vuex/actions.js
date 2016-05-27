@@ -1,4 +1,12 @@
-import * as api from '../api'
+import api from "../api"
+
+
+export const showConfirm = ({ dispatch }, msg) => {
+  dispatch('SHOW_CONFIRM', msg)
+}
+export const showOverlay = ({ dispatch }) => {
+  dispatch('SHOW_OVERLAY')
+}
 
 export const checkAuth = ({dispatch}) => {
   api.auth.checkAuth().then(
@@ -13,24 +21,24 @@ export const checkAuth = ({dispatch}) => {
   )
 }
 
-// export const singIn = ({dispatch}, uemail, upwd) => {
-//   return api.auth.signIn(uemail, upwd).then(
-//     () => {
-//       dispatch('AUTH_SIGN_IN_OK')
-//       dispatch('MODAL_CLOSE', 'LOGIN')
-//     },
-//     () => {
-//       dispatch('AUTH_SIGN_IN_FAILED')
-//       dispatch('MODAL_OPEN', 'LOGIN', {errorMsg: 'Invalid email or password'})
-//     }
-//   )
-// }
+export const singIn = ({dispatch}, email, password) => {
+  return api.auth.signIn(email, password).then(
+    () => {
+      dispatch('AUTH_SIGN_IN_SUCCESS');
+      dispatch('MODAL_CLOSE', 'LOGIN');
+    },
+    () => {
+      dispatch('AUTH_SIGN_IN_FAILED');
+      dispatch('MODAL_OPEN', 'LOGIN', {errorMsg: 'Invalid email or password'});
+    }
+  );
+};
 
-export const singIn = ({ dispatch }, uemail, upwd ) => {
-  api.getSignin({ uemail, upwd } ,userinfo => {
-    dispatch('RECEIVE_USER', userinfo )
-  })
-}
+// export const singIn = ({ dispatch }, email, password ) => {
+//   return api.auth.signIn({ email, password } ,userinfo => {
+//     dispatch('RECEIVE_USER', userinfo )
+//   })
+// }
 
 
 //获取所有信息

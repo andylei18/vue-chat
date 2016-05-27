@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 
 export default function (ref) {
   // check if user has logged in to wilddog.
-  const checkAuth = () => new Promise((resolve, reject) => ref.getAuth() ? resolve() : reject());
+  const checkAuth = () => new Promise((resolve, reject) => ref.getAuth() ? resolve() : reject())
 
-  // login to wilddog.
+  // 登录野狗服务器
   const signIn = (email, password) => {
     return new Promise((resolve, reject) => {
       ref.authWithPassword({
@@ -12,24 +12,24 @@ export default function (ref) {
         password
       }, (error, data) => {// login success handler.
         if (error) {
-          reject('Login Failed!');
+          reject('Login Failed!')
         } else {
-          resolve(data);
+          resolve(data)
         }
-      });
-    });
-  };
+      })
+    })
+  }
 
   const signOut = () => {
     return new Promise(function (resolve, reject) {
-      ref.unauth();
-      resolve();
-    });
-  };
+      ref.unauth()
+      resolve()
+    })
+  }
 
   return {
     checkAuth,
     signIn,
     signOut
-  };
+  }
 }

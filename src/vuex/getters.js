@@ -10,3 +10,5 @@ export function currentMessages (state) {
     ? thread.messages.map(id => state.messages[id])
     : []
 }
+
+export const isAuthenticated = ({isAuthenticated}) => isAuthenticated

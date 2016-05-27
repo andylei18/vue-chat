@@ -1,24 +1,32 @@
 import Vue from 'vue'
 import { set } from 'vue'
 import Vuex from 'vuex'
+//import modals from "./modules/modals"
 
 Vue.use(Vuex)
 
 const state = {
+  isAuthenticated: false,
   currentThreadID: null,
-  threads:{
+  threads: {
 
   },
-  messages:{
+  messages: {
 
-  }
+  },
+  //overLay
+  overLay: {
+    show:false
+  },
+  //Confirm
+  Confirm: {
+    message:'',
+    show:false
+  },
+
 }
 
 const mutations = {
-  ['RECEIVE_USER'] (state, userinfo) {
-    console.log(state,userinfo)
-  },
-
 
   ['RECEIVE_ALL'] (state, messages) {
     let latestMessage
@@ -40,15 +48,28 @@ const mutations = {
   ['RECEIVE_MESSAGE'] (state, message) {
     addMessage(state, message)
   },
+  //overLay
+  ['SHOW_OVERLAY'] (state) {
+    state.overLay.show = true
+  },
+  //conFirm
+  ['SHOW_CONFIRM'] (state, msg) {
+    console.log(state)
+    state.Confirm.message = msg
+    state.Confirm.show = true
+  },
+  ['HIDE_CONFIRM'] (state, msg) {
+    state.Confirm.message = ''
+    state.Confirm.show = false
+  },
 
-
-  'UTH_REQUIRED' (state){
+  ['AUTH_REQUIRED'] (state) {
     state.isAuthenticated = false
   },
-  'AUTH_SIGN_IN_OK' (state) {
+  ['AUTH_SIGN_IN_SUCCESS'] (state) {
     state.isAuthenticated = true
   },
-  'AUTH_SIGN_IN_FAILED'(state){
+  ['AUTH_SIGN_IN_FAILED'](state) {
     state.isAuthenticated = false
   },
 }
@@ -81,5 +102,8 @@ function setCurrentThread (state, id) {
 export default new Vuex.Store({
   state,
   mutations,
+  // modules: {
+  //   modals
+  // },
   strict: true
 })
