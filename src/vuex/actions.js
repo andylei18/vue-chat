@@ -27,10 +27,9 @@ export const checkAuth = ({dispatch}) => {
 // }
 
 export const singIn = ({ dispatch }, uemail, upwd ) => {
-  api.getSignin(uemail, upwd => {
-    dispatch('RECEIVE_USER',uemail,upwd)
+  api.getSignin({ uemail, upwd } ,userinfo => {
+    dispatch('RECEIVE_USER', userinfo )
   })
-
 }
 
 

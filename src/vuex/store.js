@@ -15,8 +15,8 @@ const state = {
 }
 
 const mutations = {
-  ['RECEIVE_USER'] (state, uemail, upwd) {
-    console.log(state, uemail, upwd)
+  ['RECEIVE_USER'] (state, userinfo) {
+    console.log(state,userinfo)
   },
 
 
