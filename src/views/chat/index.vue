@@ -1,6 +1,5 @@
 <template>
-
-  <div class="section">
+  <div class="container">
     <div class="row">
 
       <!--BEGIN 对话列表组件-->
@@ -13,7 +12,6 @@
 
     </div>
   </div>
-
 </template>
 
 <script>

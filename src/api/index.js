@@ -6,12 +6,14 @@ import Wilddog from "wilddog"
 const ref = new Wilddog("https://vuechat118.wilddogio.com/")
 
 
+export function getSignin ( email , pwd ) {
+  console.log(email , pwd)
+}
 
 export function getAllMessages (cb) {
   setTimeout(() => {
     //cb(data)
     ref.child('messages').on("value", (snapshot) =>{
-        console.log(snapshot.val)
         cb(snapshot)
     },(errorObject) => {
         console.log("The read failed: " + errorObject.code)

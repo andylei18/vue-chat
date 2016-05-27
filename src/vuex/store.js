@@ -15,6 +15,11 @@ const state = {
 }
 
 const mutations = {
+  ['RECEIVE_USER'] (state, uemail, upwd) {
+    console.log(state, uemail, upwd)
+  },
+
+
   ['RECEIVE_ALL'] (state, messages) {
     let latestMessage
     messages.forEach(message => {
@@ -34,6 +39,17 @@ const mutations = {
   },
   ['RECEIVE_MESSAGE'] (state, message) {
     addMessage(state, message)
+  },
+
+
+  'UTH_REQUIRED' (state){
+    state.isAuthenticated = false
+  },
+  'AUTH_SIGN_IN_OK' (state) {
+    state.isAuthenticated = true
+  },
+  'AUTH_SIGN_IN_FAILED'(state){
+    state.isAuthenticated = false
   },
 }
 

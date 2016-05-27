@@ -10,7 +10,7 @@ import WildVue from 'wildvue'
 //import Wilddog from 'wilddog'
 
 //materialize作为公用css
-import "materialize-css/bin/materialize.css"
+import "materialize-css/dist/css/materialize.min.css"
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
