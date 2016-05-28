@@ -11,6 +11,7 @@ import WildVue from 'wildvue'
 
 //materialize作为公用css
 import "materialize-css/dist/css/materialize.min.css"
+import "assets/styles/base.css"
 
 Vue.use(VueRouter)
 Vue.use(Vuex)

@@ -11,12 +11,12 @@ export const showOverlay = ({ dispatch }) => {
 export const checkAuth = ({dispatch}) => {
   api.auth.checkAuth().then(
     () => {
-      dispatch('AUTH_SIGN_IN_OK')
-      dispatch('MODAL_CLOSE', 'LOGIN')
+      dispatch('AUTH_SIGN_IN_SUCCESS')
+      //dispatch('MODAL_CLOSE', 'LOGIN')
     },
     () => {
       dispatch('AUTH_REQUIRED');
-      dispatch('MODAL_OPEN', 'LOGIN', {errorMsg: 'Please sign in ...'})
+      //dispatch('MODAL_OPEN', 'LOGIN', {errorMsg: 'Please sign in ...'})
     }
   )
 }
@@ -24,21 +24,23 @@ export const checkAuth = ({dispatch}) => {
 export const singIn = ({dispatch}, email, password) => {
   return api.auth.signIn(email, password).then(
     () => {
-      dispatch('AUTH_SIGN_IN_SUCCESS');
-      dispatch('MODAL_CLOSE', 'LOGIN');
+      dispatch('AUTH_SIGN_IN_SUCCESS')
+      //dispatch('HIDE_LOGIN')
     },
     () => {
-      dispatch('AUTH_SIGN_IN_FAILED');
-      dispatch('MODAL_OPEN', 'LOGIN', {errorMsg: 'Invalid email or password'});
+      dispatch('AUTH_SIGN_IN_FAILED')
+      //dispatch('MODAL_OPEN', 'LOGIN', {errorMsg: 'Invalid email or password'})
     }
-  );
-};
+  )
+}
 
-// export const singIn = ({ dispatch }, email, password ) => {
-//   return api.auth.signIn({ email, password } ,userinfo => {
-//     dispatch('RECEIVE_USER', userinfo )
-//   })
-// }
+export const signOut = ({dispatch}) => {
+  return api.auth.signOut().then(
+    () => {
+      dispatch('AUTH_REQUIRED')
+    }
+  )
+}
 
 
 //获取所有信息

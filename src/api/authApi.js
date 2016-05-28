@@ -10,16 +10,17 @@ export default function (ref) {
       ref.authWithPassword({
         email,
         password
-      }, (error, data) => {// login success handler.
+      }, (error, data) => {
         if (error) {
-          reject('Login Failed!')
+           reject('登录失败!')
         } else {
-          resolve(data)
+           resolve(data)
         }
       })
     })
   }
 
+  //退出野狗登录
   const signOut = () => {
     return new Promise(function (resolve, reject) {
       ref.unauth()
@@ -30,6 +31,6 @@ export default function (ref) {
   return {
     checkAuth,
     signIn,
-    signOut
+    signOut,
   }
 }

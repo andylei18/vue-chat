@@ -14,6 +14,10 @@ const state = {
   messages: {
 
   },
+  //login
+  login:{
+    show:true
+  },
   //overLay
   overLay: {
     show:false
@@ -48,13 +52,21 @@ const mutations = {
   ['RECEIVE_MESSAGE'] (state, message) {
     addMessage(state, message)
   },
+
+
+
+
+
+  //login
+  ['HIDE_LOGIN'] (state) {
+    state.login.show = false
+  },
   //overLay
   ['SHOW_OVERLAY'] (state) {
     state.overLay.show = true
   },
   //conFirm
   ['SHOW_CONFIRM'] (state, msg) {
-    console.log(state)
     state.Confirm.message = msg
     state.Confirm.show = true
   },
@@ -63,12 +75,15 @@ const mutations = {
     state.Confirm.show = false
   },
 
+  //退出登录
   ['AUTH_REQUIRED'] (state) {
     state.isAuthenticated = false
   },
+  //登录成功
   ['AUTH_SIGN_IN_SUCCESS'] (state) {
     state.isAuthenticated = true
   },
+  //登录失败
   ['AUTH_SIGN_IN_FAILED'](state) {
     state.isAuthenticated = false
   },

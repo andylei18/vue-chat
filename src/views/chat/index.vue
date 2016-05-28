@@ -25,6 +25,7 @@
   //加载vuex store
   import store from '../../vuex/store'
   import { getAllMessages } from '../../vuex/actions'
+  getAllMessages(store)
 
   export default {
       components: {
@@ -37,7 +38,7 @@
       store,
       route: {
         data (transition){
-          getAllMessages(store)
+          
         }
       }
   }
