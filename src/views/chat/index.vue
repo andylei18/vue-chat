@@ -1,5 +1,5 @@
 <template>
-  <div class="bp_chat container" :style="{width:chat.style.width + 'px'}">
+  <div class="bp_chat container">
     <div class="row">
 
       <!--BEGIN 对话列表组件-->

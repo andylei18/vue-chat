@@ -47,3 +47,16 @@
   padding: 0 10px;
   opacity: 0;
 }
+.bp_frame{
+  min-height: 680px;
+  margin: 0 auto;
+  padding: 16px 0 0 0;
+  width: 1000px;
+}
+.bp_frame_left{
+  width: 150px;
+}
+.bp_frame_main{
+  width: 850px;
+  display: inline-block;
+}

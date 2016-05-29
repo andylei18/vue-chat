@@ -95,7 +95,7 @@
           this.singIn(email , password)
           if(this.isLoginOnline){
             this.Login.show = false
-            this.$router.go({name:'chat'})
+            this.$router.go({name:'shuo'})
           }
         }else{
           console.log("错拉错拉")

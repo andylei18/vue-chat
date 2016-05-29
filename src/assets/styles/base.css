@@ -17,7 +17,13 @@ ul,p {
 
 
 
-
+.bp_frame_left{
+    display: inline-block;
+    letter-spacing: normal;
+    word-spacing: normal;
+    vertical-align: top;
+    font-size: 12px;
+}
 .bp_func {
     text-align: center;
 }

@@ -1,7 +1,8 @@
+'use strict'
 import Vue from 'vue'
 import { set } from 'vue'
 import Vuex from 'vuex'
-//import modals from "./modules/modals"
+import users from "./modules/users"
 
 Vue.use(Vuex)
 
@@ -117,8 +118,8 @@ function setCurrentThread (state, id) {
 export default new Vuex.Store({
   state,
   mutations,
-  // modules: {
-  //   modals
-  // },
+  modules: {
+    users
+  },
   strict: true
 })

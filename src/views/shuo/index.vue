@@ -1,13 +1,24 @@
 <template>
   <div class="container">
-    <div class="row">
 
+    <div class="row">
+      <div class="bp_frame">
+        <div class="bp_frame_left">
+          <!--BEGIN 左侧菜单组件-->
+          <left-module></left-module>
+          <!--BEGIN 左侧菜单组件-->
+        </div>
+        <div class="bp_frame_main">
+          <!--BEGIN main组件-->
+          <main-module></main-module>
+          <!--BEGIN main组件-->
+        </div>
+      </div>
     </div>
 
     <div class="bp_chat_btn" @click.stop="openChat($event)">
       <div class="bp_fold_bg green darken-3">
         <p class="bp_fold_cont clearfix">
-          <!-- <span class="fold_icon W_fl"></span> -->
           <i class="material-icons chat_icons bp_ficon left">chat_bubble_outline</i>
           <em class="bp_fold_font left">私信聊天</em>
         </p>
@@ -23,22 +34,41 @@
 <script>
   import '../../assets/styles/shuo.css'
 
+  //vuex
+  import { isLoginOnline } from '../../vuex/getters'
+  import store from '../../vuex/store'
+  import { initUser ,addUser } from '../../vuex/actions'  //注册事件
+
   //业务模块组件
   import ChatModule from '../../views/chat/index'  //chat组件
+  import LeftModule from './left'  //左侧菜单组件
+  import MainModule from './main'  //main组件
 
   export default {
     components: {
-      ChatModule
+      ChatModule,
+      LeftModule,
+      MainModule
     },
     data () {
       return {
         Chat: {
-          show:false,
-          style:{
-            width:560,
-          }
+          show:false
         }
       }
+    },
+    vuex: {
+      getters: {
+        isLoginOnline
+      },
+      actions: {
+        initUser,
+        addUser
+      }
+    },
+    created () {
+      if (isLoginOnline) this.initUser()
+      this.addUser()
     },
     ready (){
       document.addEventListener('click', this.componentsClose)

@@ -1,7 +1,7 @@
 'use strict'
 import Wilddog from "wilddog"
 import authApi from "./authApi"
-//import panelsApi from "./panelsApi"
+import usersApi from "./usersApi"
 const LATENCY = 16
 
 const USERDB = new Wilddog('https://userlist.wilddogio.com/')//用户表
@@ -10,7 +10,7 @@ window.USERDB = USERDB
 
 //调用野狗
 const auth = authApi(USERDB)
-//const panels = panelsApi(ref)
+const users = usersApi(USERDB)
 
 //获取全部chat信息
 export function getAllMessages (cb) {
@@ -25,6 +25,6 @@ export function getAllMessages (cb) {
 
 export default {
   auth,
+  users,
   getAllMessages
-  //panels
 }

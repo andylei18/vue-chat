@@ -1,3 +1,4 @@
+'use strict'
 import api from "../api"
 
 export const showConfirm = ({ dispatch }, msg) => {
@@ -60,3 +61,12 @@ export const sendMessage = ({ dispatch }, text, thread) => {
     dispatch('RECEIVE_MESSAGE', message)
   })
 }
+
+//初始化用户
+export const initUser = ({dispatch}) => {
+  api.users.init(dispatch);
+};
+//新增用户信息
+export const addUser = ({dispatch}, nickname) => {
+  api.users.addUser(dispatch, nickname);
+};

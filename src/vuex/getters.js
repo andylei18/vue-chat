@@ -1,3 +1,4 @@
+'use strict'
 export function currentThread (state) {
   return state.currentThreadID
     ? state.threads[state.currentThreadID]
