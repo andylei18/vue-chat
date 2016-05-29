@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="bp_chat container" :style="{width:chat.style.width + 'px'}">
     <div class="row">
 
       <!--BEGIN 对话列表组件-->
@@ -28,10 +28,12 @@
   getAllMessages(store)
 
   export default {
+      replace:true,
       components: {
         ThreadlistModule,
         MessagelistModule
       },
+      props:['chat'],
       vuex: {
 
       },

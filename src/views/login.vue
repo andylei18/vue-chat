@@ -1,5 +1,5 @@
 <template>
-  <div class="section modal open" id="loginbox" v-if="login.show" @click.stop>
+  <div class="section modal open" id="loginbox" @click.stop>
     <div class="container">
       <div class="inner">
 

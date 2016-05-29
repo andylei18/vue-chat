@@ -1,17 +1,17 @@
-.bp_chat{
-  position: fixed;
+.bp_chat_btn {
+  position: absolute;
   bottom: 0;
   right: 0;
   box-shadow: -3px -2px 8px -1px rgba(0,0,0,0.2);
   cursor: pointer;
 }
-.bp_chat .bp_fold_bg{
+.bp_chat_btn .bp_fold_bg{
   background: #f0f1f4;
   filter: alpha(opacity=95);
   opacity: 0.95;
   border-radius: 2px 0px 0px 2px;
 }
-.bp_chat .bp_fold_cont {
+.bp_chat_btn .bp_fold_cont {
     position: absolute;
     top: 0;
     left: 0;
@@ -26,10 +26,24 @@
   height: 16px;
   color: #fff;
 }
-.bp_chat .bp_fold_font {
+.bp_chat_btn .bp_fold_font {
     line-height: 40px;
     color: #fff;
     font-size: 14px;
     font-style: normal;
     font-weight: normal;
+}
+/* 必需 */
+.chat-transition {
+  transition: all .3s ease;
+  height: 402px;
+  overflow: hidden;
+}
+
+/* .chat-enter 定义进入的开始状态 */
+/* .chat-leave 定义离开的结束状态 */
+.chat-enter, .chat-leave {
+  height: 0;
+  padding: 0 10px;
+  opacity: 0;
 }

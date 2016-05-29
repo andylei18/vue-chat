@@ -84,7 +84,7 @@ const mutations = {
     state.isLoginOnline = true
   },
   //登录失败
-  ['AUTH_SIGN_IN_FAILED'](state) {
+  ['AUTH_SIGN_IN_FAILED'] (state) {
     state.isLoginOnline = false
   },
 }

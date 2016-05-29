@@ -7,7 +7,7 @@
     <!--END   navBar组件-->
 
     <!--BEGIN loginb组件-->
-    <login-module :login="Login" :action="doSignIn"></login-module>
+    <login-module v-if="Login.show" :login="Login" :action="doSignIn"></login-module>
     <!--END   login组件-->
 
     <!--BEGIN 路由切换-->

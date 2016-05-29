@@ -1,4 +1,14 @@
-
+.bp_chat {
+  position: absolute;
+  height: 402px;
+  background: #fff;
+  box-shadow: -3px -2px 8px -1px rgba(0,0,0,0.2);
+  border-radius: 2px 0px 0px 2px;
+  color: #333;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+}
 .message-list, .thread-list {
   border: 1px solid #ccf;
   font-size: 16px;

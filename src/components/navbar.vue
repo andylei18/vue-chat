@@ -47,7 +47,7 @@
             <a href="javascript:void(0);" @click="this.setList.show =! this.setList.show">
               <i class="material-icons set_icons bp_ficon">settings</i>
             </a>
-            <div class="bp_topmenulist bp_topmenulist_set" v-show="setList.show">
+            <div class="bp_topmenulist bp_topmenulist_set" v-show="setList.show" transition="setlist">
               <ul>
                 <li><a href="#">帐号设置</a></li>
                 <li><a target="_top" href="#">帐号安全</a></li>
@@ -298,5 +298,16 @@
     top: -1px;
     display: block;
     margin: 0 -2px;
+}
+/* 必需 */
+.setlist-transition {
+  transition: all .3s ease;
+  opacity: 1;
+}
+
+/* .setlist-enter 定义进入的开始状态 */
+/* .setlist-leave 定义离开的结束状态 */
+.setlist-enter, .setlist-leave {
+  opacity: 0;
 }
 </style>
