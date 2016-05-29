@@ -1,6 +1,5 @@
 import api from "../api"
 
-
 export const showConfirm = ({ dispatch }, msg) => {
   dispatch('SHOW_CONFIRM', msg)
 }

@@ -11,4 +11,4 @@ export function currentMessages (state) {
     : []
 }
 
-export const isAuthenticated = ({isAuthenticated}) => isAuthenticated
+export const isLoginOnline = ({isLoginOnline}) => isLoginOnline

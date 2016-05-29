@@ -3,11 +3,11 @@
   <div id="app">
 
     <!--BEGIN navBar组件-->
-    <nav-bar :login="Login"></nav-bar>
+    <nav-bar :login="Login" :action="showLogin"></nav-bar>
     <!--END   navBar组件-->
 
     <!--BEGIN loginb组件-->
-    <login-module v-if="Login.show" :login="Login" :action="doSignIn"></login-module>
+    <login-module :login="Login" :action="doSignIn"></login-module>
     <!--END   login组件-->
 
     <!--BEGIN 路由切换-->
@@ -35,7 +35,7 @@
   import { navBar , conFirm ,  overLay } from './components/index'  //comFirm组件,navBar组件,overLay组件
 
   //vuex
-  import { isAuthenticated } from './vuex/getters'
+  import { isLoginOnline } from './vuex/getters'
   import store from './vuex/store'
   import { showConfirm , showOverlay , checkAuth , singIn } from './vuex/actions'  //注册事件
 
@@ -53,7 +53,7 @@
     },
     vuex: {
       getters: {
-        isAuthenticated,
+        isLoginOnline,
         threads: state => state.threads,
         // Confirm: state => state.Confirm,
         // overLay: state => state.overLay
@@ -68,7 +68,7 @@
     data (){
       return {
         Login: {
-          show: true,
+          show: false,
           email: {
             value: '',
             placeholder: 'email'
@@ -93,7 +93,7 @@
         //this.$parent.showOverlay()
         if(reg.test(email.trim())&&password.trim()){
           this.singIn(email , password)
-          if(this.isAuthenticated){
+          if(this.isLoginOnline){
             this.Login.show = false
             this.$router.go({name:'chat'})
           }
@@ -102,6 +102,9 @@
         }
         this.Login.email.value = ''
         this.Login.password.value = ''
+      },
+      showLogin () {
+        this.Login.show = true
       }
     }
   }

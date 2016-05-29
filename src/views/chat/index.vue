@@ -16,7 +16,7 @@
 
 <script>
   //加载chat组件css文件
-  import '../../assets/styles/chatlist.css'
+  import '../../assets/styles/chat.css'
 
   //业务模块组件
   import ThreadlistModule from './threadlist'//对话列表组件
@@ -38,7 +38,7 @@
       store,
       route: {
         data (transition){
-          
+
         }
       }
   }

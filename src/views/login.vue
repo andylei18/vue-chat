@@ -1,5 +1,5 @@
 <template>
-  <div class="section modal open" id="loginbox">
+  <div class="section modal open" id="loginbox" v-if="login.show" @click.stop>
     <div class="container">
       <div class="inner">
 
@@ -34,6 +34,7 @@
 </template>
 <script>
   export default {
+    replace:true,
     props: ['login', 'action']
   }
 </script>
@@ -45,7 +46,6 @@
   display: none;
 }
 #loginbox {
-    display: block;
     position: fixed;
     z-index: 4;
     top: -64px;

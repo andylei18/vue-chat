@@ -1,0 +1,35 @@
+.bp_chat{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  box-shadow: -3px -2px 8px -1px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+.bp_chat .bp_fold_bg{
+  background: #f0f1f4;
+  filter: alpha(opacity=95);
+  opacity: 0.95;
+  border-radius: 2px 0px 0px 2px;
+}
+.bp_chat .bp_fold_cont {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.bp_fold_bg, .bp_chat .bp_fold_cont {
+    width: 270px;
+    height: 40px;
+}
+.chat_icons{
+  margin: 11px 16px 0 20px;
+  width: 18px;
+  height: 16px;
+  color: #fff;
+}
+.bp_chat .bp_fold_font {
+    line-height: 40px;
+    color: #fff;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: normal;
+}

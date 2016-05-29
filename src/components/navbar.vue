@@ -28,12 +28,12 @@
       <div class="bp_top_position">
         <div class="bp_nav">
           <ul class="bp_top_nav_list">
-            <li v-if="login.show">
-                <a href="javascript:void(0);" class="bp_top_name">
-                  login
+            <li v-if="!isLoginOnline">
+                <a href="javascript:void(0);" class="bp_top_name bp_ficon" @click="action">
+                  登录
                 </a>
             </li>
-            <li v-if="!login.show">
+            <li v-if="isLoginOnline">
                 <a href="/1840902741/profile?topnav=1&amp;wvr=6" class="bp_top_name">
                   <i class="material-icons user_icons bp_ficon">perm_identity</i>
                   <em class="bp_txt1">aNdy_小磊</em>
@@ -67,12 +67,10 @@
 <script>
 
   //vuex
-  import store from '../vuex/store'
-  import { isAuthenticated } from '../vuex/getters'
+  import { isLoginOnline } from '../vuex/getters'
   import { signOut } from '../vuex/actions'  //注册事件
 
   export default {
-    store,
     replace:true,
     data (){
       return {
@@ -81,31 +79,33 @@
         }
       }
     },
-    props: ['login'],
+    props: ['login','action'],
     vuex: {
       getters: {
-        isAuthenticated,
+        isLoginOnline,
       },
       actions: {
         signOut
       }
     },
     ready (){
-      document.addEventListener('click', this.setListClose)
+      document.addEventListener('click', this.componentsClose)
     },
     destroy (){
-      document.removeEventListener('click', this.setListClose)
+      document.removeEventListener('click', this.componentsClose)
     },
     methods: {
-      //关闭设置窗口
-      setListClose (){
+      //关闭窗口
+      componentsClose (){
         this.setList.show = false
+        this.login.show = false
       },
       //退出登录
       doSignOut (){
         this.signOut()
         setTimeout(() => {
           this.setList.show = false
+          this.$router.go({name:'index'})
         }, 16)
       }
     }

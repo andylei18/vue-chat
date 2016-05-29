@@ -6,7 +6,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  isAuthenticated: false,
+  isLoginOnline: false,
   currentThreadID: null,
   threads: {
 
@@ -77,15 +77,15 @@ const mutations = {
 
   //退出登录
   ['AUTH_REQUIRED'] (state) {
-    state.isAuthenticated = false
+    state.isLoginOnline = false
   },
   //登录成功
   ['AUTH_SIGN_IN_SUCCESS'] (state) {
-    state.isAuthenticated = true
+    state.isLoginOnline = true
   },
   //登录失败
   ['AUTH_SIGN_IN_FAILED'](state) {
-    state.isAuthenticated = false
+    state.isLoginOnline = false
   },
 }
 

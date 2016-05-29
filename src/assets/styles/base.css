@@ -4,7 +4,7 @@ body {
     overflow-x: hidden;
     color: #333;
 }
-ul {
+ul,p {
     margin: 0;
     padding: 0;
 }
@@ -51,7 +51,7 @@ ul {
 .bp_ficon {
     color: #696e78;
 }
-a:hover .bp_ficon,.bp_txt1:hover {
+a:hover .bp_ficon,.bp_txt1:hover ,.bp_top_name:hover{
     color: #26a69a;
 }
 .bp_line1 {

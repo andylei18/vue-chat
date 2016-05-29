@@ -6,6 +6,21 @@ Vue.use(VueRouter)
 var router = new VueRouter()
 
 router.map({
+  //入口模块
+  '/': {
+    name:'index',
+    component: (resolve) => {
+      require(['../app.vue'], resolve)
+    }
+  },
+
+  //核心模块
+  '/shuo': {
+    name:'shuo',
+    component: (resolve) => {
+      require(['../views/shuo/index.vue'], resolve)
+    }
+  },
 
   //chat聊天模块
   '/chat': {

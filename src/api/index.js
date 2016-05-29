@@ -2,20 +2,20 @@
 import Wilddog from "wilddog"
 import authApi from "./authApi"
 //import panelsApi from "./panelsApi"
-
-const WilddogID = 'userlist'
-
-const ref = new Wilddog('https://'+ WilddogID +'.wilddogio.com/')
-const messageRef= new Wilddog("https://vuechat118.wilddogio.com/")
 const LATENCY = 16
-window.ref = ref
-const auth = authApi(ref)
+
+const USERDB = new Wilddog('https://userlist.wilddogio.com/')//用户表
+const MSGDB= new Wilddog("https://vuechat118.wilddogio.com/")//聊天表
+window.USERDB = USERDB
+
+//调用野狗
+const auth = authApi(USERDB)
 //const panels = panelsApi(ref)
 
-
+//获取全部chat信息
 export function getAllMessages (cb) {
   setTimeout(() => {
-    messageRef.child('messages').on("value", (snapshot) =>{
+    MSGDB.child('messages').on("value", (snapshot) =>{
         cb(snapshot)
     },(errorObject) => {
         console.log("The read failed: " + errorObject.code)
