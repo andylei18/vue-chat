@@ -62,8 +62,7 @@
         isLoginOnline
       },
       actions: {
-        initUser,
-        addUser
+        initUser
       }
     },
     created () {

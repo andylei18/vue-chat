@@ -111,8 +111,8 @@
         //this.$parent.showOverlay()
         if(reg.test(email.trim())&&password.trim()){
           this.singIn(email,password,faceid,faceurl)
+          new Promise((resolve, reject) => this.addUser(faceid,faceurl))
           if(this.isLoginOnline){
-            this.addUser(faceid,faceurl)
             this.Login.show = false
             this.$router.go({name:'shuo'})
           }
