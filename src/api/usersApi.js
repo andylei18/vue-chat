@@ -7,28 +7,25 @@ export default function (ref) {
   //初始化用户信息
   const init = (dispatch) => {
     let authData = ref.getAuth()
-    userRef = ref.child(authData.uid).child('user')
-    let userRefQuery = userRef.orderByChild('name')
+    userRef = ref.child(authData.uid)
+    let userRefQuery = userRef.orderByChild('nickname')
 
-    // remove registered events
     userRefQuery.off('value')
     userRefQuery.off('child_added')
     userRefQuery.off('child_changed')
     userRefQuery.off('child_removed')
 
-    // add events.
     userRefQuery.once('value', datasnapshot => {
-      dispatch('USER_INIT', datasnapshot);
-    });
-    // listen on value change.
+      dispatch('USER_INIT', datasnapshot)
+    })
     userRefQuery.on('child_added', datasnapshot => {
-      dispatch('USER_ADD', datasnapshot);
-    });
+      dispatch('USER_ADD', datasnapshot)
+    })
     userRefQuery.on('child_changed', datasnapshot => {
-      dispatch('USER_UPDATED', datasnapshot);
-    });
+      dispatch('USER_UPDATED', datasnapshot)
+    })
     userRefQuery.on('child_removed', datasnapshot => {
-      dispatch('USER_REMOVE', datasnapshot);
+      dispatch('USER_REMOVE', datasnapshot)
     })
   }
   //创建用户信息
@@ -37,7 +34,7 @@ export default function (ref) {
     userRef.once("value", function(snapshot) {
       //查询用户信息是否存在
       if(!snapshot.exists()){
-          userRef.push(user, err => err && dispatch('USERS_ERROR', err))
+          userRef.set(user, err => err && dispatch('USERS_ERROR', err))
       }
     })
   }

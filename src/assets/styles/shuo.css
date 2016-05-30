@@ -54,9 +54,138 @@
   width: 1000px;
 }
 .bp_frame_left{
-  width: 150px;
+  width: 290px;
 }
 .bp_frame_main{
-  width: 850px;
+  width: 590px;
   display: inline-block;
+}
+
+/*左侧样式*/
+
+  /*个人信息*/
+.bp_module {
+    background-clip: padding-box;
+    border: 0;
+    border-radius: 6px;
+    line-height: 16px;
+    position: relative;
+    margin-bottom: 10px;
+}
+.shuoCard {
+    border: 1px solid #e1e8ed;
+    background: #FFF;
+    border-radius: 6px;
+}
+.shuoCard_bg {
+    background-size: 100%;
+    border-bottom: 1px solid #e1e8ed;
+    height: 95px;
+    border-radius: 4px 4px 0 0;
+    background-position: 0 50%;
+    width: 100%;
+    padding: 0 1px;
+    margin-left: -1px;
+    margin-top: -1px;
+}
+.shuoCard_avatarLink {
+    background-color: #fff;
+    border-radius: 6px;
+    margin: -30px 0 0 8px;
+    padding: 1px;
+    vertical-align: bottom;
+}
+.shuoCard_avatarImage {
+    border-radius: 7px;
+    height: 72px;
+    width: 72px;
+    border: 2px solid #fff;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #fff;
+}
+.shuoCard_userFields {
+    position: absolute;
+    top: 103px;
+    left: 90px;
+    width: 185px;
+}
+.shuoCard_name {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+}
+.shuoCard_screennameLink {
+    font-size: 12px;
+    padding-right: 5px;
+    color: #66757f;
+}
+.shuoCard_Stats {
+    margin-left: 11px;
+    padding: 10px 0;
+}
+.shuoCard_Stats_stat {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    line-height: 1;
+    overflow: hidden;
+    transition: all .15s ease-in-out;
+}
+.shuoCard_Stats .shuoCard_Stats_stat {
+    vertical-align: bottom;
+}
+.shuoCard_Stats_statLabel {
+    color: #8899a6;
+    font-size: 10px;
+    letter-spacing: .02em;
+    overflow: hidden;
+    text-transform: uppercase;
+    transition: color .15s ease-in-out;
+}
+.shuoCard_Stats_statValue {
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    padding-top: 3px;
+    transition: color .15s ease-in-out;
+}
+
+
+
+/*中间内容main*/
+.content_main, .content_narrow, .page_canvas, .permalink {
+    border-radius: 6px;
+}
+@media (min-width: 1236px){
+  body .content_main {
+      margin: 0 10px;
+  }
+}
+.content_main .timeline_box {
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #e1e8ed;
+}
+.tweet_user {
+    padding: 10px 12px;
+    background-color: #f5f8fa;
+    border-radius: 0 0 5px 5px;
+}
+.home_tweet_box ,.LiveVideo_tweetBox {
+    background-color: #E8FAF2;
+}
+.timeline_box .tweet_user {
+    border-radius: 3px 3px 0 0;
+    position: relative;
+}
+.home_tweet_box_userimg {
+    left: 28px;
+    position: absolute;
+    top: 13px;
+}
+.t1_form {
+    font-size: 12px;
+    margin-bottom: 0;
+}
+.timeline_box .t1-form {
+    margin-left: 56px;
 }

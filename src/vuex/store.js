@@ -91,7 +91,7 @@ const mutations = {
 }
 
 function createThread (state, id, name) {
-  set(state.threads, id, {
+  Vue.set(state.threads, id, {
     id,
     name,
     messages: [],
@@ -106,7 +106,7 @@ function addMessage (state, message) {
     thread.messages.push(message.id)
     thread.lastMessage = message
   }
-  set(state.messages, message.id, message)
+  Vue.set(state.messages, message.id, message)
 }
 
 function setCurrentThread (state, id) {

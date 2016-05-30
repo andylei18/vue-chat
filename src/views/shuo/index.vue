@@ -8,7 +8,7 @@
           <left-module></left-module>
           <!--BEGIN 左侧菜单组件-->
         </div>
-        <div class="bp_frame_main">
+        <div class="bp_frame_main content_main">
           <!--BEGIN main组件-->
           <main-module></main-module>
           <!--BEGIN main组件-->
@@ -37,7 +37,7 @@
   //vuex
   import { isLoginOnline } from '../../vuex/getters'
   import store from '../../vuex/store'
-  import { initUser ,addUser } from '../../vuex/actions'  //注册事件
+  import { initUser , addUser } from '../../vuex/actions'  //注册事件
 
   //业务模块组件
   import ChatModule from '../../views/chat/index'  //chat组件
@@ -59,7 +59,8 @@
     },
     vuex: {
       getters: {
-        isLoginOnline
+        isLoginOnline,
+        //userinfo: state => state.users
       },
       actions: {
         initUser,

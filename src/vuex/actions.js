@@ -64,9 +64,13 @@ export const sendMessage = ({ dispatch }, text, thread) => {
 
 //初始化用户
 export const initUser = ({dispatch}) => {
-  api.users.init(dispatch);
-};
+  api.users.init(dispatch)
+}
 //新增用户信息
 export const addUser = ({dispatch}, nickname) => {
-  api.users.addUser(dispatch, nickname);
-};
+  api.users.addUser(dispatch, nickname)
+}
+//更新用户信息
+export const updateUser = ({dispatch}, key, panel) => {
+  api.panels.updateUser(dispatch, key, panel)
+}
