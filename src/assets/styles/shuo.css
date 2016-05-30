@@ -6,7 +6,7 @@
   cursor: pointer;
 }
 .bp_chat_btn .bp_fold_bg{
-  background: #f0f1f4;
+  background: #19CF86;
   filter: alpha(opacity=95);
   opacity: 0.95;
   border-radius: 2px 0px 0px 2px;
@@ -186,6 +186,135 @@
     font-size: 12px;
     margin-bottom: 0;
 }
-.timeline_box .t1-form {
+.timeline_box .tweet_form {
     margin-left: 56px;
+}
+.tweet_form .tweet_content {
+    position: relative;
+    margin-bottom: 8px;
+}
+.RichEditor {
+    border: 1px solid #C5F3E0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.tweet_form .RichEditor {
+    transition: padding-bottom 300ms cubic-bezier(0.455,0.03,0.515,0.955);
+}
+.RichEditor_mozillaCursorWorkaround{
+  display: inline-block;
+}
+.RichEditor.is_fakeFocus {
+    border-color: #A3EBCE;
+    box-shadow: none;
+}
+.RichEditor_scrollContainer{
+    overflow-y: auto;
+    margin: -18px 0;
+    max-height: 284px;
+    position: relative;
+}
+.timeline_box .RichEditor_scrollContainer{
+    max-height: none;
+}
+.t1_label, input, textarea, .t1_select {
+    margin: 0;
+    font-size: 13px;
+    line-height: 20px;
+}
+input, textarea,.t1_select {
+    display: inline-block;
+    width: 210px;
+    padding: 4px;
+    margin: 0;
+    outline: 0;
+    background-color: #fff;
+    border: 1px solid #e1e8ed;
+    border-radius: 3px;
+}
+input, textarea, div[contenteditable] {
+    transition: background .2s linear;
+}
+.tweet_form .tweet_box {
+    min-height: 64px;
+    overflow: hidden;
+    padding: 8px;
+    text-shadow: none;
+    vertical-align: top;
+    width: auto;
+}
+.tweet_form .RichEditor, .tweet_form .tweet_box {
+    transition: padding-bottom 300ms cubic-bezier(0.455,0.03,0.515,0.955);
+}
+
+.RichEditor .is_showPlaceholder, .RichEditor .is_showPlaceholder:focus, .RichEditor .is_showPlaceholder.fake_focus {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 14px;
+    padding: 8px 10px;
+}
+.tweet_form textarea {
+    display: block;
+    word-wrap: break-word;
+    -webkit-nbsp-mode: normal;
+}
+
+
+.tweetBoxToolbar {
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.TweetBoxExtras {
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+.TweetBoxToolbar_tweetButton {
+    margin-left: auto;
+}
+.tweet_form .tweet_button {
+    float: right;
+}
+.spinner {
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
+    background: url(../images/shuo/spinner-rosetta-gray-32x32.gif) no-repeat 0 0;
+}
+.tweet_form .spinner {
+    background-image: url(../images/shuo/spinner-rosetta-gray-14x14.gif);
+    display: none;
+    height: 14px;
+    margin-right: 10px;
+    position: relative;
+    top: 2px;
+    width: 14px;
+}
+.tweet_counter {
+    background-color: transparent;
+    color: #8899a6;
+    display: inline-block;
+    width: 35px;
+    border: 0;
+    padding: 0 3px;
+    position: relative;
+    vertical-align: top;
+    top: 7px;
+    text-align: right;
+    font-size: 14px;
+    text-shadow: 0 1px 1px rgba(255,255,255,.75);
+}
+.tweet_form .tweet_counter {
+    top: 10px;
+}
+.tweet_form .tweet_button .tweet_counter {
+    margin-right: 5px;
 }

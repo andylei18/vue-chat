@@ -17,7 +17,7 @@
     </div>
 
     <div class="bp_chat_btn" @click.stop="openChat($event)">
-      <div class="bp_fold_bg green darken-3">
+      <div class="bp_fold_bg">
         <p class="bp_fold_cont clearfix">
           <i class="material-icons chat_icons bp_ficon left">chat_bubble_outline</i>
           <em class="bp_fold_font left">私信聊天</em>

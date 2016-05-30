@@ -134,3 +134,8 @@ a:hover .bp_ficon,.bp_txt1:hover ,.bp_top_name:hover{
     height: 32px;
     border-radius: 4px;
 }
+input, textarea {
+    margin: 0;
+    font-size: 13px;
+    line-height: 20px;
+}
