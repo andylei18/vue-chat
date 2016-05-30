@@ -21,10 +21,11 @@ export const checkAuth = ({dispatch}) => {
   )
 }
 
-export const singIn = ({dispatch}, email, password) => {
-  return api.auth.signIn(email, password).then(
+//登录
+export const singIn = ({dispatch}, email, password, faceid ,faceurl) => {
+  return api.auth.signIn(email,password,faceid,faceurl).then(
     () => {
-      dispatch('AUTH_SIGN_IN_SUCCESS')
+      dispatch('AUTH_SIGN_IN_SUCCESS',email, password, faceid ,faceurl)
       //dispatch('HIDE_LOGIN')
     },
     () => {
@@ -67,8 +68,8 @@ export const initUser = ({dispatch}) => {
   api.users.init(dispatch)
 }
 //新增用户信息
-export const addUser = ({dispatch}, nickname) => {
-  api.users.addUser(dispatch, nickname)
+export const addUser = ({dispatch},id,url) => {
+  api.users.addUser(dispatch,id,url)
 }
 //更新用户信息
 export const updateUser = ({dispatch}, key, panel) => {

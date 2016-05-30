@@ -5,7 +5,7 @@ export default function (ref) {
   const checkAuth = () => new Promise((resolve, reject) => ref.getAuth() ? resolve() : reject())
 
   // 登录野狗服务器
-  const signIn = (email, password) => {
+  const signIn = (email,password,faceid,faceurl) => {
     return new Promise((resolve, reject) => {
       ref.authWithPassword({
         email,

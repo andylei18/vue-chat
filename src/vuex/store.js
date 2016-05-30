@@ -17,7 +17,10 @@ const state = {
   },
   //login
   login:{
-    show:true
+    face:{
+      id:'',
+      url:''
+    }
   },
   //overLay
   overLay: {
@@ -81,8 +84,10 @@ const mutations = {
     state.isLoginOnline = false
   },
   //登录成功
-  ['AUTH_SIGN_IN_SUCCESS'] (state) {
+  ['AUTH_SIGN_IN_SUCCESS'] (state,email, password, faceid ,faceurl) {
     state.isLoginOnline = true
+    state.login.face.id = faceid
+    state.login.face.url = faceurl
   },
   //登录失败
   ['AUTH_SIGN_IN_FAILED'] (state) {

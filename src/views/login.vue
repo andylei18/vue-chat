@@ -18,7 +18,14 @@
               <input type="tel" class="validate" :placeholder="login.password.placeholder" minlength="6" v-model='login.password.value' @keyup.enter="action">
               <!-- <label for="icon_telephone">Telephone</label> -->
             </div>
-
+            <div class="input-field col s12">
+              <img
+  						v-for="item in login.avatar" class="avatar-item"
+  						:src="item.url"
+  						:id="item.id"
+  						@click="ckface(item)"
+  						:class="item.ck?'active':''">
+            </div>
             <div class="input-field col s12">
               <a href="javascript:;" class="btn waves-effect waves-light" @click="action">
                  Sign in
@@ -35,7 +42,7 @@
 <script>
   export default {
     replace:true,
-    props: ['login', 'action']
+    props: ['login', 'action','ckface']
   }
 </script>
 <style>
@@ -62,5 +69,18 @@
 #loginbox.open {
     -webkit-transform: translateY(64px);
     transform: translateY(64px);
+}
+.avatar-item {
+    background-size: contain;
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+    border-radius: 50%;
+}
+.avatar-item:hover,.avatar-item:active,.avatar-item.active{
+    cursor: pointer;
+    border: 5px solid #19CF86;
+    background: #fff9ec;
 }
 </style>

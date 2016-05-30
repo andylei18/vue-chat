@@ -29,8 +29,8 @@ export default function (ref) {
     })
   }
   //创建用户信息
-  const addUser = (dispatch, nickname) => {
-    let user = new User(nickname)
+  const addUser = (dispatch,id,url) => {
+    let user = new User(id,url)
     userRef.once("value", function(snapshot) {
       //查询用户信息是否存在
       if(!snapshot.exists()){

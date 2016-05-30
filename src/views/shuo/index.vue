@@ -37,7 +37,7 @@
   //vuex
   import { isLoginOnline } from '../../vuex/getters'
   import store from '../../vuex/store'
-  import { initUser , addUser } from '../../vuex/actions'  //注册事件
+  import { initUser } from '../../vuex/actions'  //注册事件
 
   //业务模块组件
   import ChatModule from '../../views/chat/index'  //chat组件
@@ -59,8 +59,7 @@
     },
     vuex: {
       getters: {
-        isLoginOnline,
-        //userinfo: state => state.users
+        isLoginOnline
       },
       actions: {
         initUser,
@@ -69,7 +68,6 @@
     },
     created () {
       if (isLoginOnline) this.initUser()
-      this.addUser()
     },
     ready (){
       document.addEventListener('click', this.componentsClose)
