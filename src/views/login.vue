@@ -46,6 +46,7 @@
   display: none;
 }
 #loginbox {
+    display: block;
     position: fixed;
     z-index: 4;
     top: -64px;
