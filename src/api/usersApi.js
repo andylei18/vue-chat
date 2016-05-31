@@ -7,7 +7,8 @@ export default function (ref) {
   //初始化用户信息
   const init = (dispatch) => {
     let authData = ref.getAuth()
-    userRef = ref.child(authData.uid)
+    let uid = authData.uid.split('simplelogin:').join('')
+    userRef = ref.child(uid)
     let userRefQuery = userRef.orderByChild('nickname')
 
     userRefQuery.off('value')
@@ -27,17 +28,30 @@ export default function (ref) {
     userRefQuery.on('child_removed', datasnapshot => {
       dispatch('USER_REMOVE', datasnapshot)
     })
+
+    if(uid!=""){
+      addUser()
+    }
   }
   //创建用户信息
-  const addUser = (dispatch,id,url) => {
-    let user = new User(id,url)
+  const addUser = (dispatch) => {
+    let user = new User()
     userRef.once("value", function(snapshot) {
       //查询用户信息是否存在
-      if(!snapshot.exists()){
-          userRef.set(user, err => err && dispatch('USERS_ERROR', err))
+      if(snapshot.exists()){
+        userRef.set(user, err => err && dispatch('USERS_ERROR', err))
+      }else{
+        userRef.push(user, err => err && dispatch('USERS_ERROR', err))
       }
     })
   }
+
+  const getuserinfo = (dispatch) => {
+    userRef.once("value",function(snapshot){
+      dispatch('USER_INFO_GET',snapshot.val())
+    })
+  }
+
   //更新用户信息
   const updateUser = (dispatch, key, user) => {
     userRef.child(key).update({

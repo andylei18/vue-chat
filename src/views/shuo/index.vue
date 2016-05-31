@@ -66,7 +66,9 @@
       }
     },
     created () {
-      if (isLoginOnline) this.initUser()
+      if (isLoginOnline) {
+        this.initUser()
+      }
     },
     ready (){
       document.addEventListener('click', this.componentsClose)

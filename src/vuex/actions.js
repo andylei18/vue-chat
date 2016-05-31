@@ -23,6 +23,7 @@ export const checkAuth = ({dispatch}) => {
 
 //登录
 export const singIn = ({dispatch}, email, password, faceid ,faceurl) => {
+
   return api.auth.signIn(email,password,faceid,faceurl).then(
     () => {
       dispatch('AUTH_SIGN_IN_SUCCESS',email, password, faceid ,faceurl)
@@ -33,6 +34,8 @@ export const singIn = ({dispatch}, email, password, faceid ,faceurl) => {
       //dispatch('MODAL_OPEN', 'LOGIN', {errorMsg: 'Invalid email or password'})
     }
   )
+
+
 }
 
 export const signOut = ({dispatch}) => {

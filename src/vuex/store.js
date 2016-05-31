@@ -3,6 +3,7 @@ import Vue from 'vue'
 import { set } from 'vue'
 import Vuex from 'vuex'
 import users from "./modules/users"
+import createUser from './actions'
 
 Vue.use(Vuex)
 
@@ -17,10 +18,7 @@ const state = {
   },
   //login
   login:{
-    face:{
-      id:'',
-      url:''
-    }
+    
   },
   //overLay
   overLay: {
@@ -84,10 +82,8 @@ const mutations = {
     state.isLoginOnline = false
   },
   //登录成功
-  ['AUTH_SIGN_IN_SUCCESS'] (state,email, password, faceid ,faceurl) {
+  ['AUTH_SIGN_IN_SUCCESS'] (state,email, password) {
     state.isLoginOnline = true
-    state.login.face.id = faceid
-    state.login.face.url = faceurl
   },
   //登录失败
   ['AUTH_SIGN_IN_FAILED'] (state) {

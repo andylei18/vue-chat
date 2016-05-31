@@ -37,7 +37,7 @@
   //vuex
   import { isLoginOnline } from './vuex/getters'
   import store from './vuex/store'
-  import { showConfirm , showOverlay , checkAuth , singIn , addUser } from './vuex/actions'  //注册事件
+  import { showConfirm , showOverlay , checkAuth , singIn } from './vuex/actions'  //注册事件
 
   //业务模块组件
   import LoginModule from './views/login'  //login组件
@@ -61,7 +61,6 @@
       actions: {
         checkAuth,
         singIn,
-        addUser
         // showConfirm,
         // showOverlay
       }
@@ -111,7 +110,6 @@
         //this.$parent.showOverlay()
         if(reg.test(email.trim())&&password.trim()){
           this.singIn(email,password,faceid,faceurl)
-          new Promise((resolve, reject) => this.addUser(faceid,faceurl))
           if(this.isLoginOnline){
             this.Login.show = false
             this.$router.go({name:'shuo'})
