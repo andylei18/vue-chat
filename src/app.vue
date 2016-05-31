@@ -1,6 +1,9 @@
 <template>
 
   <div id="app">
+    <!--BEGIN proGress组件-->
+    <pro-gress :progress="Progress"></pro-gress>
+    <!--END   proGress组件-->
 
     <!--BEGIN navBar组件-->
     <nav-bar :login="Login" :action="showLogin"></nav-bar>
@@ -32,7 +35,7 @@
 
 <script>
   //通用组件
-  import { navBar , conFirm ,  overLay } from './components/index'  //comFirm组件,navBar组件,overLay组件
+  import { proGress , navBar , conFirm ,  overLay } from './components/index'  //proGress组件,comFirm组件,navBar组件,overLay组件
 
   //vuex
   import { isLoginOnline } from './vuex/getters'
@@ -45,6 +48,7 @@
   export default {
     store,
     components: {
+      proGress,
       conFirm,
       overLay,
       navBar,
@@ -54,7 +58,7 @@
     vuex: {
       getters: {
         isLoginOnline,
-        threads: state => state.threads,
+        //threads: state => state.threads,
         // Confirm: state => state.Confirm,
         // overLay: state => state.overLay
       },
@@ -67,6 +71,9 @@
     },
     data (){
       return {
+        Progress:{
+          show:false
+        },
         Login: {
           show: false,
           email: {
@@ -100,20 +107,23 @@
     },
     methods: {
       doSignIn () {
-        const email = this.Login.email.value
-        const password = this.Login.password.value
-        const faceid = this.Login.face.id
-        const faceurl = this.Login.face.url
+        const self = this
+        const email = self.Login.email.value
+        const password = self.Login.password.value
+        const faceid = self.Login.face.id
+        const faceurl = self.Login.face.url
         const reg = /[a-zA-Z0-9]{1,10}@[a-zA-Z0-9]{1,5}\.[a-zA-Z0-9]{1,5}/
-
-        //this.$parent.showConfirm('哈哈哈哈')
-        //this.$parent.showOverlay()
+        //self.$parent.showConfirm('哈哈哈哈')
+        //self.$parent.showOverlay()
         if(reg.test(email.trim())&&password.trim()){
-          this.singIn(email,password,faceid,faceurl)
+          self.singIn(email,password,faceid,faceurl)
           if(this.isLoginOnline){
-            this.Login.show = false
-            this.$router.go({name:'shuo'})
+            self.Login.show = false
+            self.$router.go({name:'shuo'})
+          }else{
+            console.log(222222222222222)
           }
+
         }else{
           console.log("错拉错拉")
         }

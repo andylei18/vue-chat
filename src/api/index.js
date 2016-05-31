@@ -2,14 +2,17 @@
 import Wilddog from "wilddog"
 import authApi from "./authApi"
 import usersApi from "./usersApi"
+import shuoApi from "./shuoApi"
 const LATENCY = 16
 
 const USERDB = new Wilddog('https://userlist.wilddogio.com/')//用户表
 const MSGDB= new Wilddog("https://vuechat118.wilddogio.com/")//聊天表
+
 window.USERDB = USERDB
 
 //调用野狗
 const auth = authApi(USERDB)
+const shuos = shuoApi(USERDB)
 const users = usersApi(USERDB)
 
 //获取全部chat信息

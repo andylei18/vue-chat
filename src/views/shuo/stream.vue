@@ -4,6 +4,7 @@
 
     <div class="stream">
       <ol class="stream-items js-navigable-stream">
+
         <li class="js-stream-item stream-item stream-item expanding-stream-item">
           <div class="tweet">
             <div class="context"></div>
@@ -11,7 +12,7 @@
               <div class="stream-item-header">
                 <a class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="/andylei18" data-user-id="737123116598448128">
                   <img class="avatar js-action-profile-avatar" :src="users.info.faceimg" alt="">
-                  <strong class="fullname js-action-profile-name show-popup-with-id" data-aria-label-part="">丁磊</strong>
+                  <strong class="fullname js-action-profile-name show-popup-with-id" data-aria-label-part="">{{users.info.nickname}}</strong>
                   <span>‏</span>
                   <span class="username js-action-profile-name" data-aria-label-part=""><s>@</s><b>andylei18</b></span>
                 </a>
@@ -26,6 +27,7 @@
             </div>
           </div>
         </li>
+        
       </ol>
     </div>
   </div>

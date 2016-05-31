@@ -66,7 +66,7 @@
       }
     },
     created () {
-      if (isLoginOnline) {
+      if (this.isLoginOnline) {
         this.initUser()
       }
     },

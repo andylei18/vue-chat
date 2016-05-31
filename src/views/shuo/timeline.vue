@@ -12,7 +12,7 @@
             <div class="RichEditor-mozillaCursorWorkaround">&nbsp;</div>
             <div class="RichEditor-scrollContainer">
               <div aria-labelledby="tweet-box-home-timeline-label" name="tweet" id="tweet-box-home-timeline" class="tweet-box rich-editor" contenteditable="true" spellcheck="true" role="textbox" aria-multiline="true" data-placeholder-default="有什么新鲜事?" data-placeholder-poll-composer-on="提问..." dir="ltr" aria-autocomplete="list" aria-expanded="false" aria-owns="typeahead-dropdown-4">
-                <div>喂喂喂</div>
+                <textarea v-model="shuoMsg" maxlength="140" @keyup.enter="doTweet($event)"></textarea>
               </div>
               <div class="RichEditor-pictographs" aria-hidden="true"></div>
             </div>
@@ -62,7 +62,7 @@
 
           <div class="TweetBoxToolbar-tweetButton tweet-button">
             <span class="spinner"></span>
-            <span class="tweet-counter">140</span>
+            <span class="tweet-counter">{{140-shuoMsg.length}}</span>
             <button class="btn primary-btn tweet-action disabled tweet-btn js-tweet-btn" type="button">
               <span class="button-text tweeting-text">
                 <span class="Icon Icon--tweet"></span>
@@ -84,13 +84,39 @@
 </template>
 
 <script>
+  //vuex
+  import { isLoginOnline } from '../../vuex/getters'
+  import { initShuo , sendTweet } from '../../vuex/actions'  //注册事件
 
   export default {
-    vuex: {
-      getters: {
-        users: state => state.users
+    data () {
+      return {
+        shuoMsg:""
       }
     },
+    vuex: {
+      getters: {
+        shuolist: state => state.shuolist
+        users: state => state.users
+      },
+      actions: {
+        sendTweet
+      }
+    },
+    created () {
+      if (this.isLoginOnline) {
+        this.initUser()
+      }
+    },
+    methods: {
+      doTweet (e) {
+        const text = e.target.value
+        if (text.trim()) {
+          this.sendTweet(text, this.thread)
+          e.target.value = ''
+        }
+      }
+    }
 
   }
 

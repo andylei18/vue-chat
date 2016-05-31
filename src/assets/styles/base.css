@@ -16,7 +16,9 @@ ul,p {
 
 
 
-
+.btn, .btn-large, .btn-flat{
+  height: auto;
+}
 .bp_frame_left{
     display: inline-block;
     letter-spacing: normal;

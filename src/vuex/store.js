@@ -3,7 +3,7 @@ import Vue from 'vue'
 import { set } from 'vue'
 import Vuex from 'vuex'
 import users from "./modules/users"
-import createUser from './actions'
+import shuos from "./modules/shuos"
 
 Vue.use(Vuex)
 
@@ -18,7 +18,7 @@ const state = {
   },
   //login
   login:{
-    
+
   },
   //overLay
   overLay: {
@@ -34,7 +34,7 @@ const state = {
 
 const mutations = {
 
-  ['RECEIVE_ALL'] (state, messages) {
+  ['MESSAGES_ALL'] (state, messages) {
     let latestMessage
     messages.forEach(message => {
       message = message.val()
@@ -82,7 +82,7 @@ const mutations = {
     state.isLoginOnline = false
   },
   //登录成功
-  ['AUTH_SIGN_IN_SUCCESS'] (state,email, password) {
+  ['AUTH_SIGN_IN_SUCCESS'] (state) {
     state.isLoginOnline = true
   },
   //登录失败
@@ -120,7 +120,8 @@ export default new Vuex.Store({
   state,
   mutations,
   modules: {
-    users
+    users,
+    shuos
   },
   strict: true
 })

@@ -8,7 +8,7 @@ export default function (ref) {
   const init = (dispatch) => {
     let authData = ref.getAuth()
     let uid = authData.uid.split('simplelogin:').join('')
-    userRef = ref.child(uid)
+    userRef = ref.child(uid).child('info')//用户信息
     let userRefQuery = userRef.orderByChild('nickname')
 
     userRefQuery.off('value')
@@ -29,9 +29,6 @@ export default function (ref) {
       dispatch('USER_REMOVE', datasnapshot)
     })
 
-    if(uid!=""){
-      addUser()
-    }
   }
   //创建用户信息
   const addUser = (dispatch) => {

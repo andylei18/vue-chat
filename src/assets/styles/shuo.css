@@ -649,8 +649,6 @@ ol, ul {
     color: #8899a6;
 }
 .avatar {
-    width: 48px;
-    height: 48px;
     border-radius: 5px;
     -moz-force-broken-image-icon: 1;
 }

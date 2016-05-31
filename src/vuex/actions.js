@@ -38,6 +38,7 @@ export const singIn = ({dispatch}, email, password, faceid ,faceurl) => {
 
 }
 
+//退出登录
 export const signOut = ({dispatch}) => {
   return api.auth.signOut().then(
     () => {
@@ -45,12 +46,18 @@ export const signOut = ({dispatch}) => {
     }
   )
 }
-
-
+//初始化说说列表
+export const initShuo = ({dispatch}) => {
+  api.shuos.init(dispatch)
+}
+//发送说说
+export const sendTweet = ({dispatch} , text , shuolist) => {
+   api.shuos.creatShuo(dispatch,text,shuolist)
+}
 //获取所有信息
 export const getAllMessages = ({ dispatch }) => {
   api.getAllMessages(messages => {
-    dispatch('RECEIVE_ALL', messages)
+    dispatch('MESSAGES_ALL', messages)
   })
 }
 
@@ -75,6 +82,6 @@ export const addUser = ({dispatch},id,url) => {
   api.users.addUser(dispatch,id,url)
 }
 //更新用户信息
-export const updateUser = ({dispatch}, key, panel) => {
-  api.panels.updateUser(dispatch, key, panel)
+export const updateUser = ({dispatch}, key, user) => {
+  api.users.updateUser(dispatch, key, user)
 }
