@@ -3,12 +3,12 @@
 
     <div class="row">
       <div class="bp_frame">
-        <div class="bp_frame_left">
+        <div class="bp_frame_left left">
           <!--BEGIN 左侧菜单组件-->
           <left-module></left-module>
           <!--BEGIN 左侧菜单组件-->
         </div>
-        <div class="bp_frame_main content_main">
+        <div class="bp_frame_main content-main top-timeline-tweetbox">
           <!--BEGIN main组件-->
           <main-module></main-module>
           <!--BEGIN main组件-->

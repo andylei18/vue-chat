@@ -1,41 +1,27 @@
 <template>
-  <div class="timeline_box">
-    <div class="home_tweet_box tweet_box component tweet_user">
-      <img class="home_tweet_box_userimg bp_avatar bp_size32" :src="users.info.faceimg" alt="">
-      <form class="t1_form tweet_form condensed">
-        <div class="tweet_content">
-          <div class="RichEditor is_fakeFocus">
-            <div class="RichEditor_mozillaCursorWorkaround">&nbsp;</div>
-            <div class="RichEditor_scrollContainer">
-                <textarea class="tweet_box rich_editor is_showPlaceholder"></textarea>
-            </div>
-          </div>
-        </div>
 
-        <div class="tweetBoxToolbar">
-          <div class="tweetBoxExtras tweet-box-extras">
+    <!--BEGIN 发送说说窗口组件-->
+    <timeline-module></timeline-module>
+    <!--END 发送说说窗口组件-->
 
-          </div>
+    <!--BEGIN 说说列表组件-->
+    <stream-module></stream-module>
+    <!--END 说说列表组件-->
 
-          <div class="TweetBoxToolbar_tweetButton tweet_button">
-            <span class="spinner"></span>
-            <span class="tweet_counter">135</span>
-            <button class="btn waves-effect waves-light green accent-4" type="submit" name="action">
-              <i class="material-icons left">send</i>
-              说说
-            </button>
-          </div>
 
-        </div>
-      </form>
-    </div>
-  </div>
 </template>
 <script>
 
 
-  export default {
+  //业务模块组件
+  import TimelineModule from './timeline'//发送说说窗口组件
+  import StreamModule from './stream'    //说说列表组件
 
+  export default {
+    components: {
+      TimelineModule,
+      StreamModule
+    },
     vuex: {
       getters: {
         users: state => state.users

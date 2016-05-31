@@ -125,15 +125,15 @@
       showLogin () {
         this.Login.show = true
       },
-      ckface (obj) {
-        const avatar = this.Login.avatar
-        avatar.forEach(item => {
-	  			item.ck = false
-        })
-        obj.ck = true
-        this.Login.face.id = obj.id
-        this.Login.face.url = obj.url
-      }
+      // ckface (obj) {
+      //   const avatar = this.Login.avatar
+      //   avatar.forEach(item => {
+	  	// 		item.ck = false
+      //   })
+      //   obj.ck = true
+      //   this.Login.face.id = obj.id
+      //   this.Login.face.url = obj.url
+      // }
     }
   }
 </script>

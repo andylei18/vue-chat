@@ -18,14 +18,14 @@
               <input type="tel" class="validate" :placeholder="login.password.placeholder" minlength="6" v-model='login.password.value' @keyup.enter="action">
               <!-- <label for="icon_telephone">Telephone</label> -->
             </div>
-            <div class="input-field col s12">
+            <!-- <div class="input-field col s12">
               <img
   						v-for="item in login.avatar" class="avatar-item"
   						:src="item.url"
   						:id="item.id"
   						@click="ckface(item)"
   						:class="item.ck?'active':''">
-            </div>
+            </div> -->
             <div class="input-field col s12">
               <a href="javascript:;" class="btn waves-effect waves-light" @click="action">
                  Sign in

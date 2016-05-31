@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li v-if="isLoginOnline">
-                <a href="/1840902741/profile?topnav=1&amp;wvr=6" class="bp_top_name">
+                <a href="javascript:;" class="bp_top_name">
                   <i class="material-icons user_icons bp_ficon">perm_identity</i>
                   <em class="bp_txt1">{{users.info.nickname}}</em>
                 </a>

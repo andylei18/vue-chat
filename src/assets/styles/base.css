@@ -123,19 +123,101 @@ a:hover .bp_ficon,.bp_txt1:hover ,.bp_top_name:hover{
 .bp_textUserColor, .bp_textUserColorHover:hover, .bp_textUserColorHover:focus {
     color: #19CF86 !important;
 }
-.bp_avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 5px;
-    -moz-force-broken-image-icon: 1;
+.clearfix:before, .clearfix:after, .control-group:before, .control-group:after, .stream-item>div:before, .stream-item>div:after, .module:after, .module:before, .follow-card header:after, .follow-card header:before, .follow-bar:after, .follow-bar:before, .tweet-form:after, .tweet-form:before, .modal-footer:after, .modal-footer:before, .local-trends-breadcrumb:after, .local-trends-breadcrumb:before, .input-prepend .add-on, .input-append .add-on, .wrapper:after, .wrapper:before, .expanded-content:before, .expanded-content:after, .stream-item:before, .stream-item:after {
+    content: " ";
+    display: table;
 }
-.bp_size32 {
-    width: 32px;
-    height: 32px;
-    border-radius: 4px;
-}
-input, textarea {
+
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
     margin: 0;
-    font-size: 13px;
-    line-height: 20px;
+}
+button {
+    overflow: visible;
+}
+button, select {
+    text-transform: none;
+}
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+}
+button {
+    border: 0;
+}
+.btn {
+    background-color: #ccd6dd;
+    background-repeat: no-repeat;
+    border: 1px solid #e1e8ed;
+    border-radius: 4px;
+    color: #66757f;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: normal;
+    padding: 8px 16px;
+    position: relative;
+}
+.btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient(#fff,#f5f8fa);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#fff, endColorstr=#f5f8fa)";
+}
+.icon-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #1b95e0;
+    opacity: .8;
+    -ms-filter: "alpha(opacity=80)";
+    padding: 4px 10px;
+}
+.Icon {
+    background: transparent;
+    display: inline-block;
+    font-style: normal;
+    vertical-align: baseline;
+    position: relative;
+}
+.Icon:after, .Icon:before {
+    display: block;
+    font-family: "rosettaicons";
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+}
+.Icon--camera:before {
+    content: "\f027";
+}
+.Icon--geo:before {
+    content: "\f031";
+}
+.Icon--tweet:before {
+    content: "\f029";
+}
+input[type=file] {
+    background-color: #fff;
+    padding: initial;
+    border: initial;
+    line-height: initial;
+    box-shadow: none;
+}
+@font-face {
+    font-family: 'rosettaicons';
+    src: url('../font/rosetta-icons-Regular.eot');
+    src: url('../font/rosetta-icons-Regular.eot?#iefix') format('embedded-opentype'),
+    url('../font/rosetta-icons-Regular.woff') format('woff'),
+    url('../font/rosetta-icons-Regular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal
+}
+a, .btn-link, .btn-link:focus, .icon-btn, .pretty-link b, .pretty-link:hover s, .pretty-link:hover b, .pretty-link:focus s, .pretty-link:focus b, .metadata a:hover, .metadata a:focus, .account-group:hover .fullname, .account-group:focus .fullname, .account-summary:focus .fullname, .message .message-text a, .stats a strong, .plain-btn:hover, .plain-btn:focus, .dropdown.open .user-dropdown.plain-btn, .open > .plain-btn, #global-actions .new:before, .module .list-link:hover, .module .list-link:focus, .stats a:hover, .stats a:hover strong, .stats a:focus, .stats a:focus strong, .profile-modal-header .fullname a:hover, .profile-modal-header .username a:hover, .profile-modal-header .fullname a:focus, .profile-modal-header .username a:focus, .find-friends-sources li:hover .source, .stream-item a:hover .fullname, .stream-item a:focus .fullname, .stream-item .view-all-supplements:hover, .stream-item .view-all-supplements:focus, .tweet .time a:hover, .tweet .time a:focus, .tweet .details.with-icn b, .tweet .details.with-icn .Icon, .tweet .tweet-geo-text a:hover, .stream-item:hover .original-tweet .details b, .stream-item .original-tweet.focus .details b, .stream-item.open .original-tweet .details b, .client-and-actions a:hover, .client-and-actions a:focus, .dismiss-btn:hover b, .tweet .context .pretty-link:hover s, .tweet .context .pretty-link:hover b, .tweet .context .pretty-link:focus s, .tweet .context .pretty-link:focus b, .list .username a:hover, .list .username a:focus, .list-membership-container .create-a-list, .list-membership-container .create-a-list:hover, .card .list-details a:hover, .card .list-details a:focus, .card .card-body:hover .attribution, .card .card-body .attribution:focus, .new-tweets-bar, .onebox .soccer ul.ticker a:hover, .onebox .soccer ul.ticker a:focus, .remove-background-btn, .stream-item-activity-notification .latest-tweet .tweet-row a:hover, .stream-item-activity-notification .latest-tweet .tweet-row a:focus, .stream-item-activity-notification .latest-tweet .tweet-row a:hover b, .stream-item-activity-notification .latest-tweet .tweet-row a:focus b {
+    color: #19CF86;
 }
