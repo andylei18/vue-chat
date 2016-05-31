@@ -96,7 +96,7 @@
     },
     vuex: {
       getters: {
-        shuolist: state => state.shuolist
+        shuolist: state => state.shuolist,
         users: state => state.users
       },
       actions: {
